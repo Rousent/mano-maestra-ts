@@ -39,7 +39,7 @@ export default function Lessons({
                     ? basico.map(leccion => {
                         return <LessonLink leccion={leccion}/>
                     }) 
-                    : <li className="text-center">Ups, no hay nada que ver aqui...</li>
+                    : <li key="none1" className="text-center">Ups, no hay nada que ver aqui...</li>
                     }
                 </ul>
             </AccordionItem>
@@ -50,7 +50,7 @@ export default function Lessons({
                     ? intermedio.map(leccion => {
                         return <LessonLink leccion={leccion}/>
                     }) 
-                    : <li className="text-center">Ups, no hay nada que ver aqui...</li>
+                    : <li key="none2" className="text-center">Ups, no hay nada que ver aqui...</li>
                     }
                 </ul>
             </AccordionItem>
@@ -61,7 +61,7 @@ export default function Lessons({
                     ? avanzado.map(leccion => {
                         return <LessonLink leccion={leccion}/>
                     }) 
-                    : <li className="text-center">Ups, no hay nada que ver aqui...</li>
+                    : <li key="none3" className="text-center">Ups, no hay nada que ver aqui...</li>
                     }
                 </ul>
             </AccordionItem>
@@ -69,10 +69,10 @@ export default function Lessons({
                 <Progress label="Progreso" className="mb-3" value={porcentajes.empresas} showValueLabel isStriped/>
                 <ul>
                     { (empresas) 
-                    ? empresas.map(leccion => {
-                        return <LessonLink leccion={leccion}/>
-                    }) 
-                    : <li className="text-center">Ups, no hay nada que ver aqui...</li>
+                        ? empresas.map(leccion => {
+                            return <LessonLink leccion={leccion}/>
+                        }) 
+                        : <li key="none4" className="text-center">Ups, no hay nada que ver aqui...</li>
                     }
                 </ul>
             </AccordionItem>
@@ -86,8 +86,8 @@ function LessonLink({ leccion }: { leccion: Leccion }) {
             <Link href={"/content/"+leccion.idLeccion} className="flex flex-row justify-between items-center">
                 { leccion.titulo }
                 { leccion.completado 
-                ? <IconCircleCheckFilled className="w-8 h-auto"/> 
-                : <IconPlayerPlayFilled className="w-5 h-auto"/> 
+                    ? <IconCircleCheckFilled className="w-8 h-auto"/> 
+                    : <IconPlayerPlayFilled className="w-5 h-auto"/> 
                 }
             </Link>
         </li>
@@ -101,7 +101,6 @@ export function LevelUp({
     idUsuario: UUID,
     nivel: number
 }) {
-
     const supabase = createClientComponentClient()
     const router = useRouter()
 

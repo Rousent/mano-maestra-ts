@@ -13,7 +13,7 @@ export type Usuario = {
 }
 
 export type Leccion = {
-    idLeccion: number,
+    idLeccion: string,
     titulo: string,
     completado: boolean
 }

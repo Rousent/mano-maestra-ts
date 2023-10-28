@@ -1,24 +1,21 @@
 "use client"
 
-import { EyeFilledIcon, EyeSlashFilledIcon } from "@nextui-org/shared-icons"
 import Link from "next/link"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Input, Button } from "@nextui-org/react"
+import PasswordField from "@/components/PasswordField"
 import { FormEvent, useState } from "react"
-import { IconKey, IconMail } from "@tabler/icons-react"
+import { IconMail } from "@tabler/icons-react"
 import { useRouter } from "next/navigation"
 
 export default function Login() {
 
     const supabase = createClientComponentClient()
+    const router = useRouter()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState<string | null>()
-    
-    const [pwVisible, setPwVisible] = useState(false)
-
-    const router = useRouter()
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -39,28 +36,12 @@ export default function Login() {
             </span>
             <div className="flex flex-col gap-2">
                 <Input type="email" label="Correo electrónico" isRequired
-                placeholder="Ej. name@mail.com"
-                startContent={<IconMail/>}
-                labelPlacement="inside" 
-                onChange={e => setEmail(e.target.value)}
+                    placeholder="Ej. name@mail.com"
+                    startContent={<IconMail/>}
+                    labelPlacement="inside" 
+                    onChange={e => setEmail(e.target.value)}
                 />
-                <Input type={pwVisible ? "text" : "password"}
-                label="Contraseña" onChange={e => setPassword(e.target.value)}
-                labelPlacement="inside" isRequired
-                placeholder="*********"
-                startContent={<IconKey/>}
-                endContent={
-                    <button type="button" className="w-6 h-6"
-                    onClick={() => setPwVisible(!pwVisible)}>
-                        { pwVisible 
-                        ? 
-                        (<EyeSlashFilledIcon className="w-6 h-6"/>) 
-                        : 
-                        (<EyeFilledIcon className="w-6 h-6"/>) 
-                        }
-                    </button>
-                }
-                />
+                <PasswordField onChange={e => setPassword(e.target.value)} label="Contraseña"/>
                 <Link className="text-right decoration-azul text-sm mr-4" href="/">Olvidé mi contraseña</Link>
             </div>
             { error ? <span className="text-red-800 text-center">{error}</span> : null }

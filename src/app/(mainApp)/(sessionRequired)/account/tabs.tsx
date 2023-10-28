@@ -2,11 +2,11 @@
 
 import { Usuario } from "@/types/local";
 import { Tabs, Tab, Divider, Button, Input } from "@nextui-org/react";
-
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { Chip } from "@nextui-org/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import PasswordField from "@/components/PasswordField";
 
 import { FormEvent, useState } from "react"
 
@@ -24,7 +24,7 @@ export function Secciones({
                 <ModificarDatos usuario={ usuario }/>
             </Tab>
             <Tab title="Modificar contraseña">
-                <ModificarContraseña usuario={ usuario }/>
+                <ModificarContraseña/>
             </Tab>
         </Tabs>
     )
@@ -44,11 +44,7 @@ function Datos({
             <Divider/>
             <CardBody className="gap-2">
                 <span>
-                    <b>Nombre:</b> { 
-                    usuario.nombres + " " + 
-                    usuario.apellidoPaterno + " " + 
-                    usuario.apellidoMaterno
-                    } 
+                    <b>Nombre:</b> { usuario.nombres + " " + usuario.apellidoPaterno + " " + usuario.apellidoMaterno }
                 </span>
                 <span>
                     <b>Correo Electrónico:</b> { usuario.email }
@@ -135,11 +131,7 @@ function ModificarDatos({
     )
 }
 
-function ModificarContraseña({ 
-    usuario 
-}: {
-    usuario: Usuario
-}) {
+function ModificarContraseña() {
 
     const supabase = createClientComponentClient()
     const router = useRouter()
@@ -153,7 +145,13 @@ function ModificarContraseña({
         e.preventDefault()
         setMessage(null)
         if (nueva == confirmar) {
-            const { error } = await supabase.rpc("change_user_password", {current_plain_password: actual, new_plain_password: nueva,})
+            const { error } = await supabase.rpc(
+                "change_user_password", 
+                {
+                    current_plain_password: actual, 
+                    new_plain_password: nueva,
+                }
+            )
             if (error) {
                 setMessage(<span>{error.message}</span>)
             } else {
@@ -173,21 +171,9 @@ function ModificarContraseña({
                 </CardHeader>
                 <Divider/>
                 <CardBody className="gap-2">
-                    <Input label="Actual contraseña" isRequired
-                    type="password"
-                    labelPlacement="inside" 
-                    onChange={e => setActual(e.target.value)}
-                    />
-                    <Input label="Nueva contraseña" isRequired
-                    type="password"
-                    labelPlacement="inside" 
-                    onChange={e => setNueva(e.target.value)}
-                    />
-                    <Input label="Confirmar contraseña" isRequired
-                    type="password"
-                    labelPlacement="inside" 
-                    onChange={e => setConfirmar(e.target.value)}
-                    />
+                    <PasswordField onChange={e => setActual(e.target.value)} label="Contraseña Actual"/>
+                    <PasswordField onChange={e => setNueva(e.target.value)} label="Nueva Contraseña"/>
+                    <PasswordField onChange={e => setConfirmar(e.target.value)} label="Confirmar contraseña"/>
                 </CardBody>
                 <CardFooter className="flex flex-col justify-center">
                     { message }

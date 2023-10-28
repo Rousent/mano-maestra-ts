@@ -55,12 +55,14 @@ export default async function Indice() {
             </div>
             <span>Mi progreso: { data.nivel }</span>
             { subir && <LevelUp idUsuario={data.idUsuario} nivel={data.valorNivel}/>}
-            <Lessons basico={basico} 
-            intermedio={intermedio} 
-            avanzado={avanzado} 
-            empresas={empresas} 
-            porcentajes={porcentajes} 
-            nivelActual={data.valorNivel}/>
+            <Lessons
+                basico={basico} 
+                intermedio={intermedio} 
+                avanzado={avanzado} 
+                empresas={empresas} 
+                porcentajes={porcentajes} 
+                nivelActual={data.valorNivel}
+            />
         </div>
     )
 }
