@@ -29,7 +29,7 @@ export default async function Navbar({
     }
 
     return (
-        <nav className="bg-fondo w-full flex justify-center mb-4">
+        <nav className="bg-fondo w-full flex justify-center mb-4 shadow-md">
             <div className="flex grow max-w-7xl justify-between mx-8 items-center">
                 <div className="left-0 flex gap-10 items-center">
                     <Link href="/"
