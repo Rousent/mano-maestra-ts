@@ -1,68 +1,52 @@
-
-import Lessons, { LevelUp } from "@/components/LessonsList"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
+import Lessons, { LevelUp } from "@/components/LessonsList";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 export default async function Indice() {
+	const supabase = createServerComponentClient({ cookies });
+	const { data } = await supabase.rpc("get_full_user");
 
-    
-    const supabase = createServerComponentClient({ cookies })
-    const { data } = await supabase.rpc("get_full_user")
+	let niveles = await supabase
+		.from("niveles")
+		.select("descripcion, lecciones (*)");
 
-    const lecciones = await supabase.rpc("get_lessons")
+	niveles = niveles.data;
 
-    const basico = lecciones.data["Nivel Basico"]
-    const intermedio = lecciones.data["Nivel Intermedio"]
-    const avanzado = lecciones.data["Nivel Avanzado"]
-    const empresas = lecciones.data["LSM Orientado a Empresas"]
+	let leccionesCompletadas = await supabase
+		.from("lecciones_completadas")
+		.select("id_leccion")
+		.eq("id_usuario", data.id);
 
-    // Obtener porcentaje de completado por cada nivel
-    let porcentajes = { basico: -1, intermedio: -1, avanzado: -1, empresas: -1 }
-    if (data.valorNivel >= 1 && basico){
-        porcentajes.basico = (basico.filter((leccion: { completado: boolean }) => leccion.completado == true).length*100) / basico.length
-    }
-    if (data.valorNivel >= 2 && intermedio){
-        porcentajes.intermedio = (intermedio.filter((leccion: { completado: boolean }) => leccion.completado == true).length*100) / intermedio.length
-    }
-    if (data.valorNivel >= 3 && avanzado){
-        porcentajes.avanzado = (avanzado.filter((leccion: { completado: boolean }) => leccion.completado == true).length*100) / avanzado.length
-    }
-    if (data.valorNivel >= 1 && empresas){
-        porcentajes.empresas = (empresas.filter((leccion: { completado: boolean }) => leccion.completado == true).length*100) / empresas.length
-    }
+	leccionesCompletadas = leccionesCompletadas.data.map(
+		(l: any) => l.id_leccion
+	);
 
-    let subir = false
-    switch (data.valorNivel) {
-        case 1:
-            if (porcentajes.basico == 100) {
-                subir = true
-            }
-            break;
-        case 2:
-            if (porcentajes.intermedio == 100) {
-                subir = true
-            }
-            break;
-    }
+	for (let i = 0; i < niveles.length; i++) {
+		for (let j = 0; j < niveles[i].lecciones.length; j++) {
+			niveles[i].lecciones[j].completado = leccionesCompletadas.includes(
+				niveles[i].lecciones[j].id_leccion
+			);
+		}
+	}
 
-    return (
-        <div className="w-full flex flex-col gap-3 items-center">
-            <div className="w-full flex flex-col gap-2 text-center">
-                <h2>Lecciones</h2>
-                <span className="text-xl">
-                    Aprende sobre el lenguaje de señas
-                </span>
-            </div>
-            <span>Mi progreso: { data.nivel }</span>
-            { subir && <LevelUp idUsuario={data.idUsuario} nivel={data.valorNivel}/>}
-            <Lessons
-                basico={basico} 
-                intermedio={intermedio} 
-                avanzado={avanzado} 
-                empresas={empresas} 
-                porcentajes={porcentajes} 
-                nivelActual={data.valorNivel}
-            />
-        </div>
-    )
+	for (let i = 0; i < niveles.length; i++) {
+		niveles[i].porcentaje =
+			niveles[i].lecciones.length > 0
+				? (100 / niveles[i].lecciones.length) *
+				  niveles[i].lecciones.filter((l: any) => l.completado).length
+				: 0;
+	}
+
+	return (
+		<div className="w-full flex flex-col gap-3 items-center">
+			<div className="w-full flex flex-col gap-2 text-center">
+				<h2>Lecciones</h2>
+				<span className="text-xl">
+					Aprende sobre el lenguaje de señas
+				</span>
+			</div>
+			<span>Mi progreso: {data.nivel}</span>
+			<Lessons niveles={niveles} nivelActual={data.nivel} />
+		</div>
+	);
 }

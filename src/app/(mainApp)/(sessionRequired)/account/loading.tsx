@@ -1,5 +1,9 @@
-import { IconLoader } from "@tabler/icons-react";
+import { Spinner } from "@nextui-org/spinner";
 
 export default function Loading() {
-    return <IconLoader className="animate-spin w-32 h-32 place-self-center"/>
+	return (
+		<div className="w-full flex flex-col items-center">
+			<Spinner size="lg" />
+		</div>
+	);
 }

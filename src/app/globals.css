@@ -3,34 +3,44 @@
 @tailwind utilities;
 
 :root {
-  @apply w-full h-full bg-fondo;
+	@apply w-full h-full bg-fondo;
 }
 
 @media (prefers-color-scheme: dark) {
 }
 
 body {
-    @apply bg-fondo w-full h-full;
+	@apply bg-fondo w-full h-full;
 }
 
-h1 { @apply text-4xl font-bold text-center; }
-h2 { @apply text-4xl font-semibold; }
-h3 { @apply text-3xl font-medium; }
-h4 { @apply text-2xl; }
-h5 { @apply text-xl; }
-h6 { @apply text-lg; }
+h1 {
+	@apply text-4xl font-bold text-center;
+}
+h2 {
+	@apply text-4xl font-semibold;
+}
+h3 {
+	@apply text-3xl font-medium;
+}
+h4 {
+	@apply text-2xl;
+}
+h5 {
+	@apply text-xl;
+}
+h6 {
+	@apply text-lg;
+}
 
 a {
-  @apply decoration-2 text-center hover:underline;
+	@apply decoration-2 text-center hover:underline;
 }
-ul {
-  @apply list-disc list-outside;
-}
+
 label {
-  @apply w-full font-medium text-lg select-none;
+	@apply w-full font-medium text-lg select-none;
 }
 button {
-  /*@apply border-black w-fit h-fit self-center border-solid border-2 rounded-lg px-5 py-1 hover:shadow-lg hover:text-lg transition-all duration-150;*/
+	/*@apply border-black w-fit h-fit self-center border-solid border-2 rounded-lg px-5 py-1 hover:shadow-lg hover:text-lg transition-all duration-150;*/
 }
 
 /**
@@ -44,11 +54,21 @@ form {
 }
 */
 
-p, li {
-  @apply text-left text-lg;
+p,
+li {
+	@apply text-left text-lg;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	@apply mb-4;
+}
 
-div[data-overlay-container=true] {
-  height: inherit;
+div[data-overlay-container="true"] {
+	height: inherit;
 }
