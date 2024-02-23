@@ -6,6 +6,7 @@ import { gestures } from "@/components/LSMGestures";
 import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { IconCamera } from "@tabler/icons-react";
+import { Button, ButtonGroup } from "@nextui-org/button";
 
 export default function CameraAccess() {
 	const [camera, setCamera] = useState(false);
@@ -90,9 +91,9 @@ function Camera({ setCamera }) {
 
 	return (
 		<div className="bg-gray-800 rounded-lg text-center self-center border-[5px] border-gray-800 w-fit h-fit">
-			<button className="bg-blanco" onClick={() => setCamera(null)}>
+			<Button className="mb-1" onClick={() => setCamera(null)}>
 				Cerrar
-			</button>
+			</Button>
 			<div className="relative">
 				<Webcam
 					ref={webcamRef}
