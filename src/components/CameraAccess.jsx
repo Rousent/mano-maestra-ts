@@ -12,7 +12,7 @@ export default function CameraAccess() {
 
 	if (!camera) {
 		return (
-			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-full h-fit">
+			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
 				<button onClick={() => setCamera(true)} className="w-1/2 h-1/2">
 					<IconCamera className="w-full h-full stroke-white" />
 					<div className="text-xl font-bold text-white">
@@ -60,7 +60,7 @@ function Camera({ setCamera }) {
 			const hand = await net.estimateHands(video);
 
 			if (hand.length > 0) {
-				const gesture = await GE.estimate(hand[0].landmarks, 7);
+				const gesture = await GE.estimate(hand[0].landmarks, 7.5);
 				if (
 					gesture.gestures !== undefined &&
 					gesture.gestures.length > 0
@@ -139,7 +139,7 @@ const drawHand = (predictions, ctx) => {
 						landmarks[secondJointIndex][1]
 					);
 					ctx.strokeStyle = "#F9904F";
-					ctx.lineWidth = 4;
+					ctx.lineWidth = 3;
 					ctx.stroke();
 				}
 			}
@@ -148,7 +148,7 @@ const drawHand = (predictions, ctx) => {
 				const x = landmarks[i][0];
 				const y = landmarks[i][1];
 				ctx.beginPath();
-				ctx.arc(x, y, 5, 0, 3 * Math.PI);
+				ctx.arc(x, y, 4, 0, 3 * Math.PI);
 				ctx.fillStyle = "#2DA4FA";
 				ctx.fill();
 			}
