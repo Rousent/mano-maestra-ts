@@ -1,8 +1,14 @@
-
-import "@/app/globals.css" //Estilos de tailwind
-import { Roboto } from "next/font/google"
+import "@/app/globals.css"; //Estilos de tailwind
+import { Roboto } from "next/font/google";
 import { Providers } from "./providers";
 import { cookies } from "next/headers";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Mano Maestra",
+	description: "Proyecto Mano Maestra Infomatrix 2024",
+};
 
 /**
  * Root Layout
@@ -11,24 +17,22 @@ import { cookies } from "next/headers";
  */
 
 const roboto = Roboto({
-    weight: ['100', '300', '400', '500', '700', '900'],
-    style: ['normal', 'italic'],
-    subsets: ['latin'],
-    display: 'swap',
-  })
+	weight: ["100", "300", "400", "500", "700", "900"],
+	style: ["normal", "italic"],
+	subsets: ["latin"],
+	display: "swap",
+});
 
-export default function RootLayout({ 
-    children 
-}: { 
-    children: React.ReactNode 
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
 }) {
-    return (
-        <html className={ roboto.className }>
-            <body>
-                <Providers>
-                    { children }
-                </Providers>
-            </body>
-        </html>
-    )
+	return (
+		<html className={roboto.className}>
+			<body>
+				<Providers>{children}</Providers>
+			</body>
+		</html>
+	);
 }
