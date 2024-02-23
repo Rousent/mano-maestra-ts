@@ -1,30 +1,36 @@
-
+import Image from "next/image";
+import { Button } from "@nextui-org/button";
+import Link from "next/link";
 
 export default function Home() {
-
-    return (
-        <div>
-            <h2 className="font-bold pb-6">Potencia tu comunicacion</h2>
-            <h3 className="font-bold text-xl mb-2 pb-2"> Sigue una ruta de aprendizaje en lenguaje de señas y avanza con cursos especializados de forma ágil y guiada.</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-3">
-                <div className="bg-gradient-to-tr from-orange-500 to-blue-500 text-white p-6 rounded-lg">
-                    <h3 className="font-bold text-xl mb-2 pb-2">Nivel Básico en Lengua de Señas</h3>
-                    <p className="text-justify">Inicia tu viaje en la LSM con las bases esenciales, aprende el alfabeto, vocabulario básico y estructuras fundamentales de LSM para comunicarte de manera básica.</p>
-                </div>
-                <div className="bg-gradient-to-tr from-orange-500 to-blue-500 text-white p-6 rounded-lg">
-                    <h3 className="font-bold text-xl mb-2 pb-2">Nivel Intermedio en Lengua de Señas</h3>
-                    <p className="text-justify">Perfecciona tus habilidades en la LSM. Amplía tu vocabulario y comunica de manera más fluida en situaciones cotidianas.</p>
-                </div>
-                <div className="bg-gradient-to-tr from-orange-500 to-blue-500 text-white p-6 rounded-lg">
-                    <h3 className="font-bold text-xl mb-2 pb-2">Nivel Avanzado en Lengua de Señas</h3>
-                    <p className="text-justify">Lleva tu dominio de la LSM a un nivel superior. Comunica con fluidez en conversaciones más complejas y participa activamente en la comunidad sorda.</p>
-                </div>
-                <div className="bg-gradient-to-tr from-orange-500 to-blue-500 text-white p-6 rounded-lg">
-                    <h3 className="font-bold text-xl mb-2 pb-2">LSM Orientado a Empresas</h3>
-                    <p className="text-justify">Aplica la LSM en entornos laborales. Aprende a comunicarte en el trabajo con inclusión. Además, explora los Fundamentos de Programación para adquirir habilidades tecnológicas esenciales.</p>
-                </div>
-            </div>
-        </div>
-
-    )
+	return (
+		<div className="flex flex-col gap-2 w-full h-full m-2">
+			<div className="relative group flex w-full h-[30rem]">
+				<div className="flex w-full h-full bg-learn bg-cover text-fondo">
+					<div className="flex flex-col gap-4 w-full h-full justify-center items-center backdrop-brightness-50 p-4">
+						<h2>Aprender</h2>
+						<p className="text-2xl font-semibold text-fondo text-center transition-all duration-300">
+							Revisa nuestras lecciones y prueba el sistema de
+							reconocimiento de señas.
+						</p>
+						<p className="text-xl underline text-fondo text-center transition-all duration-300">
+							Click para iniciar sesión
+						</p>
+					</div>
+				</div>
+			</div>
+			<div className="group relative flex w-full h-[30rem] bg-practice bg-cover text-fondo">
+				<div className="flex flex-col gap-4 w-full h-full justify-center items-center backdrop-brightness-50 p-4">
+					<h2>Practicar</h2>
+					<p className="text-2xl font-semibold text-fondo text-center transition-all duration-300">
+						[PROXIMAMENTE]: Unete a sesiones publicas o privadas, o
+						crea un lobby y practica con otras personas en linea.
+					</p>
+					<p className="text-xl underline text-fondo text-center transition-all duration-300">
+						Click para iniciar sesión.
+					</p>
+				</div>
+			</div>
+		</div>
+	);
 }

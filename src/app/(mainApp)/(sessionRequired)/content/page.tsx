@@ -46,7 +46,7 @@ export default async function Indice() {
 				</span>
 			</div>
 			<span>Mi progreso: {data.nivel}</span>
-			<Lessons niveles={niveles} nivelActual={data.nivel} />
+			<Lessons niveles={niveles} nivelActual={data.valor_nivel} />
 		</div>
 	);
 }

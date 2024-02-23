@@ -6,9 +6,10 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import {
 	IconPlayerPlayFilled,
 	IconCircleCheckFilled,
+	IconChevronRight,
 } from "@tabler/icons-react";
 import { UUID } from "crypto";
-import Link from "next/link";
+import { Link } from "@nextui-org/link";
 import { useRouter } from "next/navigation";
 
 export default function Lessons({
@@ -18,10 +19,17 @@ export default function Lessons({
 	niveles: any;
 	nivelActual: number;
 }) {
+	let disabledLevels: any = {
+		1: ["2", "3"],
+		2: ["3"],
+		3: [],
+	};
+
 	return (
 		<Accordion
 			className="md:w-[768px] w-full"
 			defaultExpandedKeys={[nivelActual.toString()]}
+			disabledKeys={disabledLevels[nivelActual] ?? []}
 		>
 			<AccordionItem key="1" title="Nivel Basico">
 				<Progress
@@ -34,7 +42,12 @@ export default function Lessons({
 				<ul>
 					{niveles[0].lecciones.length > 0 ? (
 						niveles[0].lecciones.map((leccion: any) => {
-							return <LessonLink leccion={leccion} />;
+							return (
+								<LessonLink
+									key={leccion.id_leccion}
+									leccion={leccion}
+								/>
+							);
 						})
 					) : (
 						<li key="none1" className="text-center">
@@ -54,7 +67,12 @@ export default function Lessons({
 				<ul>
 					{niveles[1].lecciones.length > 0 ? (
 						niveles[1].lecciones.map((leccion: any) => {
-							return <LessonLink leccion={leccion} />;
+							return (
+								<LessonLink
+									key={leccion.id_leccion}
+									leccion={leccion}
+								/>
+							);
 						})
 					) : (
 						<li key="none2" className="text-center">
@@ -74,7 +92,12 @@ export default function Lessons({
 				<ul>
 					{niveles[2].lecciones.length > 0 ? (
 						niveles[2].lecciones.map((leccion: any) => {
-							return <LessonLink leccion={leccion} />;
+							return (
+								<LessonLink
+									key={leccion.id_leccion}
+									leccion={leccion}
+								/>
+							);
 						})
 					) : (
 						<li key="none3" className="text-center">
@@ -94,7 +117,12 @@ export default function Lessons({
 				<ul>
 					{niveles[3].lecciones.length > 0 ? (
 						niveles[3].lecciones.map((leccion: any) => {
-							return <LessonLink leccion={leccion} />;
+							return (
+								<LessonLink
+									key={leccion.id_leccion}
+									leccion={leccion}
+								/>
+							);
 						})
 					) : (
 						<li key="none4" className="text-center">
@@ -107,21 +135,23 @@ export default function Lessons({
 	);
 }
 
-function LessonLink({ leccion }: { leccion: Leccion }) {
+function LessonLink({ key, leccion }: { key: string; leccion: Leccion }) {
 	return (
-		<li
-			key={leccion.id_leccion}
-			className="rounded-full bg-naranja pl-4 pr-1 py-1"
-		>
+		<li key={key}>
 			<Link
 				href={"/content/" + leccion.id_leccion}
-				className="flex flex-row justify-between items-center"
+				isBlock
+				color="foreground"
+				className="flex flex-row justify-between items-center px-3"
 			>
-				{leccion.titulo}
+				<div className="flex gap-2">
+					<IconChevronRight />
+					{leccion.titulo}
+				</div>
 				{leccion.completado ? (
 					<IconCircleCheckFilled className="w-8 h-auto" />
 				) : (
-					<IconPlayerPlayFilled className="w-5 h-auto" />
+					<IconPlayerPlayFilled className="w-8 h-auto" />
 				)}
 			</Link>
 		</li>
