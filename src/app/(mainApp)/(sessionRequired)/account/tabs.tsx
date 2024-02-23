@@ -75,10 +75,10 @@ function ModificarDatos({ usuario }: { usuario: Usuario }) {
 			Object.assign(cambios, { nombres });
 		}
 		if (apellidoPaterno !== usuario.apellido_paterno) {
-			Object.assign(cambios, { apellido_paterno });
+			Object.assign(cambios, { apellido_paterno: apellidoPaterno });
 		}
 		if (apellidoMaterno !== usuario.apellido_materno) {
-			Object.assign(cambios, { apellido_materno });
+			Object.assign(cambios, { apellido_materno: apellidoMaterno });
 		}
 		if (Object.keys(cambios).length > 0) {
 			const { error } = await supabase
