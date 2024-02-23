@@ -1,8 +1,10 @@
 "use client";
 import * as handPoseDetection from "@tensorflow-models/hand-pose-detection";
 import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
+import { Button, ButtonGroup } from "@nextui-org/button";
+import { IconCamera } from "@tabler/icons-react";
 
 const fingerLookupIndices = {
 	thumb: [0, 1, 2, 3, 4],
@@ -13,6 +15,7 @@ const fingerLookupIndices = {
 };
 
 export default function WebcamDetector() {
+	const [open, setOpen] = useState(false);
 	const webcamRef = useRef<any>(null);
 	const canvasRef = useRef<any>(null);
 
@@ -60,8 +63,24 @@ export default function WebcamDetector() {
 		onMount();
 	}, []);
 
+	if (!open) {
+		return (
+			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
+				<button onClick={() => setOpen(true)} className="w-1/2 h-1/2">
+					<IconCamera className="w-full h-full stroke-white" />
+					<div className="text-xl font-bold text-white">
+						Abrir la camara
+					</div>
+				</button>
+			</div>
+		);
+	}
+
 	return (
 		<div className="bg-gray-800 rounded-lg text-center self-center border-[5px] border-gray-800 w-fit h-fit">
+			<Button className="mb-1" onClick={() => setOpen(false)}>
+				Cerrar
+			</Button>
 			<div className="relative">
 				<Webcam
 					ref={webcamRef}
@@ -72,17 +91,9 @@ export default function WebcamDetector() {
 					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-fit h-fit"
 				/>
 			</div>
-			<div className="py-3 text-white font-medium text-lg">Texto</div>
+			{/** <div className="py-3 text-white font-medium text-lg">Texto</div> */}
 		</div>
 	);
-}
-
-function drawCtx(ctx: any, video: any) {
-	ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-}
-
-function clearCtx(ctx: any, video: any) {
-	ctx.clearRect(0, 0, video.videoWidth, video.videoHeight);
 }
 
 /**

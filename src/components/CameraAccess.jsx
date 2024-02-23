@@ -6,13 +6,14 @@ import { gestures } from "@/components/LSMGestures";
 import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { IconCamera } from "@tabler/icons-react";
+import { Button, ButtonGroup } from "@nextui-org/button";
 
 export default function CameraAccess() {
 	const [camera, setCamera] = useState(false);
 
 	if (!camera) {
 		return (
-			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-full h-fit">
+			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
 				<button onClick={() => setCamera(true)} className="w-1/2 h-1/2">
 					<IconCamera className="w-full h-full stroke-white" />
 					<div className="text-xl font-bold text-white">
@@ -60,7 +61,7 @@ function Camera({ setCamera }) {
 			const hand = await net.estimateHands(video);
 
 			if (hand.length > 0) {
-				const gesture = await GE.estimate(hand[0].landmarks, 7);
+				const gesture = await GE.estimate(hand[0].landmarks, 7.5);
 				if (
 					gesture.gestures !== undefined &&
 					gesture.gestures.length > 0
@@ -90,9 +91,9 @@ function Camera({ setCamera }) {
 
 	return (
 		<div className="bg-gray-800 rounded-lg text-center self-center border-[5px] border-gray-800 w-fit h-fit">
-			<button className="bg-blanco" onClick={() => setCamera(null)}>
+			<Button className="mb-1" onClick={() => setCamera(null)}>
 				Cerrar
-			</button>
+			</Button>
 			<div className="relative">
 				<Webcam
 					ref={webcamRef}
@@ -139,7 +140,7 @@ const drawHand = (predictions, ctx) => {
 						landmarks[secondJointIndex][1]
 					);
 					ctx.strokeStyle = "#F9904F";
-					ctx.lineWidth = 4;
+					ctx.lineWidth = 3;
 					ctx.stroke();
 				}
 			}
@@ -148,7 +149,7 @@ const drawHand = (predictions, ctx) => {
 				const x = landmarks[i][0];
 				const y = landmarks[i][1];
 				ctx.beginPath();
-				ctx.arc(x, y, 5, 0, 3 * Math.PI);
+				ctx.arc(x, y, 4, 0, 3 * Math.PI);
 				ctx.fillStyle = "#2DA4FA";
 				ctx.fill();
 			}

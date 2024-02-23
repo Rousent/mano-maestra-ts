@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@nextui-org/link";
 import { NavOptions, OptionsButton } from "./NavbarActions";
 import {
 	Session,
@@ -33,13 +33,25 @@ export default async function Navbar({ session }: { session: Session | null }) {
 						href="/"
 						id="home"
 						title="Pagina principal"
+						isBlock
+						color="foreground"
 						className="w-40 h-20 bg-logo bg-contain bg-no-repeat bg-center"
 					/>
 					<div className="hidden md:flex md:gap-10">
-						<Link href={links.about} id="about">
+						<Link
+							href={links.about}
+							id="about"
+							isBlock
+							color="foreground"
+						>
 							Sobre nosotros
 						</Link>
-						<Link href={links.enterprise} id="enterprise">
+						<Link
+							href={links.enterprise}
+							id="enterprise"
+							isBlock
+							color="foreground"
+						>
 							Para empresas
 						</Link>
 						{session && (
@@ -47,6 +59,8 @@ export default async function Navbar({ session }: { session: Session | null }) {
 								href={links.lessons}
 								id="content"
 								className="decoration-azul"
+								isBlock
+								color="foreground"
 							>
 								Lecciones
 							</Link>
@@ -56,6 +70,8 @@ export default async function Navbar({ session }: { session: Session | null }) {
 								href={links.practice}
 								id="practice"
 								className="decoration-naranja"
+								isBlock
+								color="foreground"
 							>
 								Practica
 							</Link>
@@ -78,10 +94,10 @@ export default async function Navbar({ session }: { session: Session | null }) {
 export function AccessButtons() {
 	return (
 		<div className="hidden md:flex gap-6 items-center">
-			<Link href={links.signup} id="signup" className="decoration-azul">
+			<Link href={links.signup} id="signup" isBlock color="foreground">
 				Crear cuenta
 			</Link>
-			<Link href={links.login} id="login" className="decoration-naranja">
+			<Link href={links.login} id="login" isBlock color="foreground">
 				Iniciar sesión
 			</Link>
 		</div>
