@@ -16,7 +16,7 @@ export default function LessonNavigation({
 		<div className="flex w-full justify-between">
 			<Link
 				id={anterior || "regresar"}
-				color="foreground"
+				color="success"
 				isBlock
 				href={anterior || "/content"}
 				className="flex gap-2 items-center"
@@ -26,7 +26,7 @@ export default function LessonNavigation({
 			</Link>
 			<Link
 				id={siguiente || "regresar"}
-				color="foreground"
+				color="primary"
 				isBlock
 				href={siguiente || "/content"}
 				className="flex gap-2 items-center"

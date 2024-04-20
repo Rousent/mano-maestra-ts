@@ -1,46 +1,148 @@
+import { Image } from "@nextui-org/image";
+import { Button } from "@nextui-org/button";
+import { Link } from "@nextui-org/link";
+import { links } from "@/types/links";
+import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import CameraAccess from "@/components/CameraAccess";
-import WebcamDetector from "@/components/WebcamDetector";
-import Link from "next/link";
 
 export default function Home() {
 	return (
 		<div className="flex flex-col gap-2 w-full h-full m-2">
-			<Link
-				href="/content"
-				className="relative group flex w-full h-[30rem]"
-			>
-				<div className="flex w-full h-full bg-learn bg-cover text-fondo">
-					<div className="flex flex-col gap-4 w-full h-full justify-center items-center backdrop-brightness-50 p-4">
-						<h2>Aprender</h2>
-						<p className="text-2xl font-semibold text-fondo text-center transition-all duration-300">
-							Revisa nuestras lecciones y prueba el sistema de
-							reconocimiento de señas.
-						</p>
-						<p className="text-xl underline text-fondo text-center transition-all duration-300">
-							Click para ver las lecciones.
-						</p>
+			<div className="grid grid-cols-2 gap-12">
+				<div className="self-center">
+					<h1>¡Bienveni@ a Mano Maestra!</h1>
+					<p>
+						¿Quieres aprender lengua de señas mexicana? ¿Buscas la
+						mejor forma de aprender en linea de forma practica y
+						comoda? <strong>¡Somos tu mejor opción!</strong>
+					</p>
+					<div className="flex flex-col gap-3 w-fit mx-auto mt-6">
+						<Button
+							size="lg"
+							color="primary"
+							as={Link}
+							href={links.signup}
+							className="text-2xl"
+						>
+							<b>
+								<i>Empezar ahora</i>
+							</b>
+						</Button>
+						<Button
+							size="lg"
+							color="success"
+							variant="light"
+							as={Link}
+							href={links.signup}
+						>
+							<i>Ya tengo una cuenta</i>
+						</Button>
 					</div>
 				</div>
-			</Link>
-			<div className="group relative flex w-full h-[30rem] bg-practice bg-cover text-fondo">
-				<div className="flex flex-col gap-4 w-full h-full justify-center items-center backdrop-brightness-50 p-4">
-					<h2>Practicar</h2>
-					<p className="text-2xl font-semibold text-fondo text-center transition-all duration-300">
-						[PROXIMAMENTE]: Unete a sesiones publicas o privadas, o
-						crea un lobby y practica con otras personas en linea.
-					</p>
+
+				<div>
+					<Image
+						isBlurred
+						isZoomed
+						src="img/sign_language.jpg"
+						alt="Mano Maestra"
+					/>
 				</div>
 			</div>
-			<div className="group relative flex flex-col gap-3 w-full h-fit bg-cover text-black">
-				<h2>¡Trabajando en un nuevo modelo de reconocimiento!</h2>
-				<p className="w-full text-center text-2xl">
-					<b>Modelo antiguo:</b> Reconocimiento basico de una mano.
-				</p>
+
+			<div className="mt-10">
+				<h2>¿Porque Mano Maestra?</h2>
+				<p className="text-center">¿Que encontraras con nosotros?</p>
+				<div className="grid grid-cols-3 gap-4">
+					<Card>
+						<CardBody>
+							<Image
+								isZoomed
+								src="img/practice.jpg"
+								alt="Mano Maestra"
+							/>
+						</CardBody>
+						<CardFooter className="flex flex-col gap-1">
+							<span className="text-center text-lg font-bold">
+								Lecciones en linea
+							</span>
+							<p>
+								Explora nuestras lecciones en sus 3 niveles:
+								basico, intermedio y avanzado.
+							</p>
+						</CardFooter>
+					</Card>
+					<Card>
+						<CardBody>
+							<Image
+								isZoomed
+								src="img/learn.jpg"
+								alt="Mano Maestra"
+							/>
+						</CardBody>
+						<CardFooter className="flex flex-col gap-1">
+							<span className="text-center text-lg font-bold">
+								¿Particular o Empresa?
+							</span>
+							<p>
+								Ya sea que estudies por tu cuenta, o tu empresa
+								busque capacitar a sus empleados, Mano Maestra
+								tiene algo para ti.
+							</p>
+						</CardFooter>
+					</Card>
+					<Card>
+						<CardBody>
+							<Image
+								isZoomed
+								src="img/videocall.jpg"
+								alt="Mano Maestra"
+							/>
+						</CardBody>
+						<CardFooter className="flex flex-col gap-1">
+							<span className="text-center text-lg font-bold">
+								¡Practica!
+							</span>
+							<p>
+								No te conformes con la teoria. ¡Aplica el
+								estudio practico con nuestro{" "}
+								<strong>
+									sistema de reconocimiento de señas
+								</strong>
+								!
+							</p>
+						</CardFooter>
+					</Card>
+				</div>
+			</div>
+
+			<div className="mt-10">
+				<h2>¡Aprende de forma práctica!</h2>
+
+				<div className="grid grid-cols-2 gap-10">
+					<Image
+						src="img/heart_sign.jpg"
+						isBlurred
+						isZoomed
+						alt="Mano Maestra"
+					/>
+
+					<div>
+						<h3>
+							Prueba nuestro sistema de reconocimiento de señas
+						</h3>
+						<ul className="list-inside list-decimal">
+							<li>Enciende tu camara web.</li>
+							<li>Pon la mano frente a la camara.</li>
+							<li>¡Practica la forma de la seña!</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div className="mt-10">
+				<h2>¡Intentalo ahora mismo!</h2>
 				<CameraAccess />
-				<p className="w-full text-center text-2xl">
-					<b>Nuevo modelo:</b> Reconocimiento 3D de ambas manos.
-				</p>
-				<WebcamDetector />
 			</div>
 		</div>
 	);

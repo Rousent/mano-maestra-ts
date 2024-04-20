@@ -5,7 +5,7 @@ import * as fp from "fingerpose";
 import { gestures } from "@/components/LSMGestures";
 import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { IconCamera } from "@tabler/icons-react";
+import { IconCamera, IconX } from "@tabler/icons-react";
 import { Button, ButtonGroup } from "@nextui-org/button";
 
 export default function CameraAccess() {
@@ -13,9 +13,9 @@ export default function CameraAccess() {
 
 	if (!camera) {
 		return (
-			<div className="flex flex-col justify-center items-center bg-gray-800 rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
+			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
 				<button onClick={() => setCamera(true)} className="w-1/2 h-1/2">
-					<IconCamera className="w-full h-full stroke-white" />
+					<IconCamera className="w-full h-full stroke-whitecolor" />
 					<div className="text-xl font-bold text-white">
 						Abrir la camara
 					</div>
@@ -90,11 +90,15 @@ function Camera({ setCamera }) {
 	}, []);
 
 	return (
-		<div className="bg-gray-800 rounded-lg text-center self-center border-[5px] border-gray-800 w-fit h-fit">
-			<Button className="mb-1" onClick={() => setCamera(null)}>
-				Cerrar
-			</Button>
+		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-fit h-fit">
 			<div className="relative">
+				<Button
+					className="absolute right-0 z-20"
+					color="secondary"
+					onClick={() => setCamera(null)}
+				>
+					Cerrar
+				</Button>
 				<Webcam
 					ref={webcamRef}
 					className="rounded-lg mx-auto text-center w-fit h-fit"
@@ -104,7 +108,7 @@ function Camera({ setCamera }) {
 					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-fit h-fit"
 				/>
 			</div>
-			<div className="py-3 text-white font-medium text-lg">
+			<div className="py-3 text-whitecolor font-medium text-lg">
 				{prediction}
 			</div>
 		</div>
@@ -139,7 +143,7 @@ const drawHand = (predictions, ctx) => {
 						landmarks[secondJointIndex][0],
 						landmarks[secondJointIndex][1]
 					);
-					ctx.strokeStyle = "#F9904F";
+					ctx.strokeStyle = "#040316";
 					ctx.lineWidth = 3;
 					ctx.stroke();
 				}
@@ -150,7 +154,7 @@ const drawHand = (predictions, ctx) => {
 				const y = landmarks[i][1];
 				ctx.beginPath();
 				ctx.arc(x, y, 4, 0, 3 * Math.PI);
-				ctx.fillStyle = "#2DA4FA";
+				ctx.fillStyle = "#ff6933";
 				ctx.fill();
 			}
 		});

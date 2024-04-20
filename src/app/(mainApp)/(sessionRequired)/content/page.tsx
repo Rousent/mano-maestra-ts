@@ -42,7 +42,8 @@ export default async function Indice() {
 			<div className="w-full flex flex-col gap-2 text-center">
 				<h2>Lecciones</h2>
 				<span className="text-xl">
-					Aprende sobre el lenguaje de señas
+					Explora las lecciones, practica con el sistema de
+					reconocimiento, ¡Y aprende sobre el lenguaje de señas!
 				</span>
 			</div>
 			<span>Mi progreso: {data.nivel}</span>

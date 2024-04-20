@@ -71,6 +71,14 @@ export function OptionsButton({ usuario }: { usuario: Usuario | null }) {
 							Para empresas
 						</DropdownItem>
 						<DropdownItem
+							key={links.repo.replace("/", "")}
+							startContent={<IconLink />}
+							onPress={() => router.push(links.repo)}
+							href={links.repo}
+						>
+							Repositorio
+						</DropdownItem>
+						<DropdownItem
 							key={links.lessons.replace("/", "")}
 							startContent={<IconLink />}
 							href={links.lessons}
@@ -142,8 +150,10 @@ function LogoutModal({
 							<span>¿Seguro que quieres cerrar sesión?</span>
 						</ModalBody>
 						<ModalFooter>
-							<Button onPress={onClose}>Cancelar</Button>
-							<Button onPress={handleLogout}>
+							<Button variant="light" onPress={onClose}>
+								Cancelar
+							</Button>
+							<Button color="primary" onPress={handleLogout}>
 								Cerrar sesión
 							</Button>
 						</ModalFooter>

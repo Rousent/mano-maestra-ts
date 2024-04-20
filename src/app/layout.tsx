@@ -1,5 +1,5 @@
 import "@/app/globals.css"; //Estilos de tailwind
-import { Roboto } from "next/font/google";
+import { Roboto, Poppins } from "next/font/google";
 import { Providers } from "./providers";
 import { cookies } from "next/headers";
 
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
  * Utilizar para providers, estilos css, etc.
  */
 
-const roboto = Roboto({
+const poppins = Poppins({
 	weight: ["100", "300", "400", "500", "700", "900"],
 	style: ["normal", "italic"],
 	subsets: ["latin"],
@@ -29,7 +29,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html className={roboto.className}>
+		<html className={poppins.className}>
 			<body>
 				<Providers>{children}</Providers>
 			</body>

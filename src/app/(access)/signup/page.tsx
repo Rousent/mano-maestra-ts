@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@nextui-org/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Input, Button } from "@nextui-org/react";
 import PasswordField from "@/components/PasswordField";
@@ -14,7 +14,7 @@ export default function Login() {
 	const router = useRouter();
 
 	const [boton, setBoton] = useState(
-		<Button type="submit" className="w-fit self-center">
+		<Button type="submit" className="w-fit self-center " color="primary">
 			Continuar
 		</Button>
 	);
@@ -110,12 +110,6 @@ export default function Login() {
 					onChange={(e) => setConfirmar(e.target.value)}
 					label="Confirmar contraseña"
 				></PasswordField>
-				<Link
-					className="text-right decoration-azul text-sm mr-4"
-					href="/"
-				>
-					Olvidé mi contraseña
-				</Link>
 			</div>
 			{error ? (
 				<span className="text-red-800 text-center">{error}</span>
@@ -123,7 +117,7 @@ export default function Login() {
 			{boton}
 			<div className="flex flex-row gap-2 justify-center items-center">
 				<div>¿Ya tienes una cuenta?</div>
-				<Link href={"/login"} className="underline decoration-azul">
+				<Link href={"/login"} isBlock color="success">
 					¡Inicia Sesión!
 				</Link>
 			</div>

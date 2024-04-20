@@ -6,6 +6,10 @@
 	@apply w-full h-full bg-fondo;
 }
 
+* {
+	@apply text-blackcolor;
+}
+
 @media (prefers-color-scheme: dark) {
 }
 

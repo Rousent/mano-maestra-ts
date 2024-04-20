@@ -33,7 +33,6 @@ export default async function Navbar({ session }: { session: Session | null }) {
 						href="/"
 						id="home"
 						title="Pagina principal"
-						isBlock
 						color="foreground"
 						className="w-40 h-20 bg-logo bg-contain bg-no-repeat bg-center"
 					/>
@@ -53,6 +52,14 @@ export default async function Navbar({ session }: { session: Session | null }) {
 							color="foreground"
 						>
 							Para empresas
+						</Link>
+						<Link
+							href={links.repo}
+							id="repo"
+							isBlock
+							color="foreground"
+						>
+							Repositorio
 						</Link>
 						{session && (
 							<Link
@@ -94,10 +101,10 @@ export default async function Navbar({ session }: { session: Session | null }) {
 export function AccessButtons() {
 	return (
 		<div className="hidden md:flex gap-6 items-center">
-			<Link href={links.signup} id="signup" isBlock color="foreground">
+			<Link href={links.signup} id="signup" isBlock color="primary">
 				Crear cuenta
 			</Link>
-			<Link href={links.login} id="login" isBlock color="foreground">
+			<Link href={links.login} id="login" isBlock color="success">
 				Iniciar sesión
 			</Link>
 		</div>

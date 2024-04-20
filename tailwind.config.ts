@@ -12,9 +12,14 @@ const config: Config = {
 	theme: {
 		colors: {
 			...colors,
-			azul: "#2DA4FA",
-			naranja: "#F9904F",
-			fondo: "#FFF9F4",
+			azul: "#004e8a",
+			naranja: "#ff6933",
+			fondo: "#fbfbfe",
+			blackcolor: "#040316",
+			whitecolor: "#fbfbfe",
+			primary: "#ff6933",
+			secondary: "#f7c6a1",
+			accent: "#004e8a",
 		},
 		extend: {
 			colors: {},
@@ -41,6 +46,24 @@ const config: Config = {
 		},
 	},
 	darkMode: "class",
-	plugins: [nextui()],
+	plugins: [
+		nextui({
+			themes: {
+				light: {
+					colors: {
+						foreground: "#040316",
+						background: "#fbfbfe",
+						primary: "#ff6933",
+						secondary: "#f7c6a1",
+						success: "#004e8a",
+					},
+				},
+				dark: {
+					layout: {},
+					colors: {},
+				},
+			},
+		}),
+	],
 };
 export default config;

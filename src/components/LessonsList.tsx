@@ -39,6 +39,17 @@ export default function Lessons({
 					showValueLabel
 					isStriped
 				/>
+				<p>
+					En este nivel aprenderás los fundamentos del lenguaje de
+					señas, incluyendo el alfabeto, los números básicos y otras
+					señas comúnes.
+				</p>
+				<p>
+					<b>
+						Este nivel es perfecto para personas que no tienen
+						experiencia previa con el lenguaje de señas.
+					</b>
+				</p>
 				<ul>
 					{niveles[0].lecciones.length > 0 ? (
 						niveles[0].lecciones.map((leccion: any) => {
@@ -64,6 +75,19 @@ export default function Lessons({
 					showValueLabel
 					isStriped
 				/>
+				<p>
+					En este nivel ampliarás tus conocimientos de lenguaje de
+					señas y podrás mantener conversaciones más complejas sobre
+					una variedad de temas. Aprenderás a usar la gramática del
+					lenguaje de señas y a expresarte de manera más fluida y
+					natural.
+				</p>
+				<p>
+					<b>
+						Este nivel es recomendado para personas que tienen un
+						conocimiento básico del lenguaje de señas.
+					</b>
+				</p>
 				<ul>
 					{niveles[1].lecciones.length > 0 ? (
 						niveles[1].lecciones.map((leccion: any) => {
@@ -89,6 +113,19 @@ export default function Lessons({
 					showValueLabel
 					isStriped
 				/>
+				<p>
+					En este nivel perfeccionarás tus habilidades en el lenguaje
+					de señas y podrás participar en conversaciones con personas
+					sordas de manera fluida y segura. Aprenderás sobre la
+					cultura sorda y cómo interactuar con personas sordas en
+					diferentes contextos.
+				</p>
+				<p>
+					<b>
+						Este nivel es recomendado para personas que tienen un
+						dominio intermedio del lenguaje de señas.
+					</b>
+				</p>
 				<ul>
 					{niveles[2].lecciones.length > 0 ? (
 						niveles[2].lecciones.map((leccion: any) => {
@@ -114,6 +151,19 @@ export default function Lessons({
 					showValueLabel
 					isStriped
 				/>
+				<p>
+					En este nivel aprenderás el lenguaje de señas específico que
+					se utiliza en el entorno empresarial. Podrás atender a
+					clientes sordos, dar presentaciones en lenguaje de señas y
+					participar en reuniones con colegas sordos.
+				</p>
+				<p>
+					<b>
+						Este nivel es recomendado para profesionales que
+						trabajan con personas sordas o que desean mejorar sus
+						habilidades de comunicación con la comunidad sorda.
+					</b>
+				</p>
 				<ul>
 					{niveles[3].lecciones.length > 0 ? (
 						niveles[3].lecciones.map((leccion: any) => {
