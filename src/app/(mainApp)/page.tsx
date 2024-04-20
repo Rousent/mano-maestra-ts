@@ -10,7 +10,7 @@ export default function Home() {
 		<div className="flex flex-col gap-2 w-full h-full m-2">
 			<div className="grid grid-cols-2 gap-12">
 				<div className="self-center">
-					<h1>¡Bienveni@ a Mano Maestra!</h1>
+					<h1>¡Bienvenid@ a Mano Maestra!</h1>
 					<p>
 						¿Quieres aprender lengua de señas mexicana? ¿Buscas la
 						mejor forma de aprender en linea de forma practica y
