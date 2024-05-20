@@ -6,13 +6,13 @@ export default async function Indice() {
 	const supabase = createServerComponentClient({ cookies });
 	const { data } = await supabase.rpc("get_full_user");
 
-	let niveles = await supabase
+	let niveles: any = await supabase
 		.from("niveles")
 		.select("descripcion, lecciones (*)");
 
 	niveles = niveles.data;
 
-	let leccionesCompletadas = await supabase
+	let leccionesCompletadas: any = await supabase
 		.from("lecciones_completadas")
 		.select("id_leccion")
 		.eq("id_usuario", data.id);

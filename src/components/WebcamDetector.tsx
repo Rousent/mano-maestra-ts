@@ -8,7 +8,7 @@ import { IconCamera } from "@tabler/icons-react";
 import * as tf from "@tensorflow/tfjs";
 import { gesture } from "./LSMGestures";
 
-const fingerLookupIndices = {
+const fingerLookupIndices: any = {
 	thumb: [0, 1, 2, 3, 4],
 	indexFinger: [0, 5, 6, 7, 8],
 	middleFinger: [0, 9, 10, 11, 12],
