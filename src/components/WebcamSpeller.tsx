@@ -1,12 +1,14 @@
 "use client";
 import * as handPoseDetection from "@tensorflow-models/hand-pose-detection";
 import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@nextui-org/button";
 import { IconCamera } from "@tabler/icons-react";
 import * as tf from "@tensorflow/tfjs";
 import { gesture } from "./LSMGestures";
+import VictoryModal from "./VictoryModal";
+import { useDisclosure } from "@nextui-org/react";
 
 const fingerLookupIndices = {
 	thumb: [0, 1, 2, 3, 4],
@@ -16,29 +18,50 @@ const fingerLookupIndices = {
 	pinky: [0, 17, 18, 19, 20],
 };
 
-export default function WebcamDetector() {
+export default function WebcamSpeller({ palabra }: { palabra: string }) {
 	const [open, setOpen] = useState(false);
+	const deletrear = palabra.toUpperCase();
 
 	if (!open) {
 		return (
 			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
+				<div className="text-3xl font-bold text-white">
+					Vamos a deletrar{" "}
+					<div className="text-yellow-200">{deletrear}</div>
+				</div>
 				<button onClick={() => setOpen(true)} className="w-1/2 h-1/2">
 					<IconCamera className="w-full h-full stroke-whitecolor" />
-					<div className="text-3xl font-bold text-white">
-						Abrir la camara
+					<div className="text-3xl font-bold text-yellow-200">
+						Empezar
 					</div>
 				</button>
 			</div>
 		);
 	}
 
-	return <WebcamDetectorInternal setOpen={setOpen} />;
+	return <WebcamSpellerInternal setOpen={setOpen} deletrear={deletrear} />;
 }
 
-export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
-	const [prediccion, setPrediccion] = useState("Cargando Red Neuronal...");
+export function WebcamSpellerInternal({
+	deletrear,
+	setOpen,
+}: {
+	deletrear: string;
+	setOpen: any;
+}) {
+	const [progreso, setProgreso] = useState(0);
+	// Fuck React
+	const stateRef = useRef(progreso);
+	const [images, setImages] = useState<String[]>([]);
 	const webcamRef = useRef<any>(null);
 	const canvasRef = useRef<any>(null);
+	const hiddenCanvasRef = useRef<any>(null);
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+	const capture = useCallback(() => {
+		const imageSrc = webcamRef.current.getScreenshot();
+		setImages((images) => [...images, imageSrc]);
+	}, [webcamRef]);
 
 	const detect = async (detector: any, core: any) => {
 		if (
@@ -75,9 +98,17 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 					Math.max(...predictionArray[0])
 				);
 
-				setPrediccion(gesture[predictedClass]);
+				// Comprobar que hace la seña correctamente
+				if (
+					gesture[predictedClass] ==
+					deletrear.charAt(stateRef.current)
+				) {
+					setProgreso(stateRef.current + 1);
+					capture();
+				} else if (stateRef.current === deletrear.length) {
+					onOpen();
+				}
 			} else {
-				setPrediccion("Coloque la mano derecha frente a la camara.");
 			}
 			drawResults(ctx, hands);
 		}
@@ -106,6 +137,10 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 		onMount();
 	}, []);
 
+	useEffect(() => {
+		stateRef.current = progreso;
+	}, [progreso]);
+
 	return (
 		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-fit h-fit">
 			<div className="relative">
@@ -126,8 +161,23 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 				/>
 			</div>
 			<div className="py-3 text-whitecolor font-medium text-2xl">
-				{prediccion}
+				<div className="inline text-green-500">
+					{progreso > 0 ? deletrear.substring(0, progreso) : ""}
+				</div>
+				<div className="inline text-yellow-200">
+					{deletrear.charAt(progreso)}
+				</div>
+				<div className="inline text-gray-300">
+					{deletrear.slice(progreso + 1)}
+				</div>
 			</div>
+			<canvas ref={hiddenCanvasRef} style={{ display: "none" }}></canvas>
+			<VictoryModal
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+				setOpen={setOpen}
+				images={images}
+			/>
 		</div>
 	);
 }

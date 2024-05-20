@@ -4,6 +4,8 @@ import { Link } from "@nextui-org/link";
 import { links } from "@/types/links";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import CameraAccess from "@/components/CameraAccess";
+import WebcamSpeller from "@/components/WebcamSpeller";
+import WebcamDetector from "@/components/WebcamDetector";
 import { IconCheck } from "@tabler/icons-react";
 
 export default function Home() {
@@ -34,7 +36,7 @@ export default function Home() {
 							color="success"
 							variant="light"
 							as={Link}
-							href={links.signup}
+							href={links.login}
 						>
 							<i>Ya tengo una cuenta</i>
 						</Button>
@@ -250,7 +252,8 @@ export default function Home() {
 
 			<div className="mt-10">
 				<h2>¡Intentalo ahora mismo!</h2>
-				<CameraAccess />
+				<WebcamDetector />
+				<WebcamSpeller palabra="oliver" />
 			</div>
 		</div>
 	);
