@@ -126,7 +126,7 @@ export function WebcamSpellerInternal({
 			detectorConfig
 		);
 
-		const core = await tf.loadLayersModel("model/model.json");
+		const core = await tf.loadLayersModel("/model/model.json");
 
 		setInterval(() => {
 			detect(detector, core);

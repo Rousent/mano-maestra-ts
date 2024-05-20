@@ -1,6 +1,7 @@
 import LessonNavigation from "@/components/LessonNavigation";
 import LessonCheckpoint from "@/components/LessonCheckpoint";
-import CameraAccess from "@/components/CameraAccess";
+import WebcamDetector from "@/components/WebcamDetector";
+import WebcamSpeller from "@/components/WebcamSpeller";
 
 <LessonNavigation anterior="basico-5" siguiente="basico-7" />
 
@@ -35,8 +36,11 @@ O: Repite el movimiento de la letra "O" con la mano derecha.
 		width: "800px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="morado" />
 
 ¡Ahora has deletreado "MORADO" en LSM!
 
@@ -63,8 +67,11 @@ E: Extiende la mano derecha con los dedos juntos y la palma hacia la izquierda, 
 		width: "700px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="verde" />
 
 ¡Ahora has deletreado "VERDE" en LSM!
 
@@ -89,8 +96,11 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 		width: "600px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="rosa" />
 
 ¡Ahora has deletreado "ROSA" en LSM!
 
@@ -117,8 +127,11 @@ O: Forma un círculo con los dedos de la mano derecha.
 		width: "700px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="negro" />
 
 ¡Ahora has deletreado "NEGRO" en LSM!
 
@@ -147,8 +160,11 @@ O: Forma un círculo con los dedos de la mano derecha.
 		width: "800px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="blanco" />
 
 ¡Ahora has deletreado "BLANCO" en LSM!
 
@@ -158,7 +174,7 @@ O: Forma un círculo con los dedos de la mano derecha.
 
 Si tienes una camara, puedes utilizar el sistema de reconocimiento de señas. Enciende la camara e imita la forma de la mano para las letras.
 
-<CameraAccess />
+<WebcamDetector />
 
 <LessonCheckpoint leccion="basico-6" />
 

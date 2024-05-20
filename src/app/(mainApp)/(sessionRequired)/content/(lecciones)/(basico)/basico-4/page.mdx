@@ -1,6 +1,7 @@
 import LessonNavigation from "@/components/LessonNavigation";
 import LessonCheckpoint from "@/components/LessonCheckpoint";
-import CameraAccess from "@/components/CameraAccess";
+import WebcamDetector from "@/components/WebcamDetector";
+import WebcamSpeller from "@/components/WebcamSpeller";
 
 <LessonNavigation anterior="basico-3" siguiente="basico-5" />
 
@@ -33,8 +34,12 @@ N: Con la mano derecha formando el círculo, extiende el dedo índice hacia arri
 		width: "650px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="limon" />
+
 ¡Ahora has deletreado "LIMÓN" en LSM!
 
 ### FRESA:
@@ -60,8 +65,12 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 		width: "650px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="fresa" />
+
 ¡Ahora has deletreado "FRESA" en LSM!
 
 ### UVA:
@@ -83,8 +92,12 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 		width: "500px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="uva" />
+
 ¡Ahora has deletreado "UVA" en LSM!
 
 ### GUAYABA:
@@ -114,8 +127,12 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 		width: "800px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="guayaba" />
+
 ¡Ahora has deletreado "GUAYABA" en LSM!
 
 ### MELÓN:
@@ -141,8 +158,11 @@ N: Con la mano derecha, toca el pulgar con el índice y el medio, y extiende los
 		width: "600px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="melon" />
 
 ¡Ahora has deletreado "MELÓN" en LSM!
 
@@ -152,7 +172,7 @@ N: Con la mano derecha, toca el pulgar con el índice y el medio, y extiende los
 
 Si tienes una camara, puedes utilizar el sistema de reconocimiento de señas. Enciende la camara e imita la forma de la mano para las letras.
 
-<CameraAccess />
+<WebcamDetector />
 
 <LessonCheckpoint leccion="basico-4" />
 

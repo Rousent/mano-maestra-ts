@@ -1,6 +1,7 @@
 import LessonNavigation from "@/components/LessonNavigation";
 import LessonCheckpoint from "@/components/LessonCheckpoint";
-import CameraAccess from "@/components/CameraAccess";
+import WebcamDetector from "@/components/WebcamDetector";
+import WebcamSpeller from "@/components/WebcamSpeller";
 
 <LessonNavigation anterior="basico-2" siguiente="basico-4" />
 
@@ -31,8 +32,12 @@ N: Con la mano derecha formando el círculo, extiende el dedo índice hacia arri
 		width: "500px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="leon" />
+
 ¡Ahora has deletreado "LEÓN" en LSM!
 
 ### PERRO:
@@ -58,8 +63,12 @@ O: Forma un círculo con los dedos de la mano derecha.
 		width: "600px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="perro" />
+
 ¡Ahora has deletreado "PERRO" en LSM!
 
 ### GATO:
@@ -83,8 +92,11 @@ O: Forma un círculo con los dedos de la mano derecha.
 		width: "500px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="gato" />
 
 ¡Ahora has deletreado "GATO" en LSM!
 
@@ -111,8 +123,12 @@ N: Con la mano derecha formando el círculo, extiende el dedo índice hacia arri
 		width: "600px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="raton" />
+
 ¡Ahora has deletreado "RATÓN" en LSM!
 
 ### ORUGA:
@@ -138,8 +154,12 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 		width: "600px",
 		margin: "0 auto",
 		border: "2px solid orange",
+		marginBottom: "20px",
 	}}
 />
+
+<WebcamSpeller palabra="oruga" />
+
 ¡Ahora has deletreado "ORUGA" en LSM!
 
 ¡Felicidades! Has completado la lección de deletreo en lenguaje de señas mexicano para animales. Recuerda practicar regularmente para mejorar tu fluidez y precisión en el lenguaje de señas. Una excelente manera de practicar es utilizando la cámara de tu dispositivo con un sistema de reconocimiento de señas integrado. Con este sistema, podrás practicar y recibir retroalimentación en tiempo real sobre tus movimientos de señas. También puedes buscar comunidades en línea o grupos locales donde puedas practicar y aprender más sobre el lenguaje de señas. ¡Sigue aprendiendo y comunicándote de manera inclusiva!
@@ -148,7 +168,7 @@ A: Extiende los dedos de la mano derecha hacia abajo.
 
 Si tienes una camara, puedes utilizar el sistema de reconocimiento de señas. Enciende la camara e imita la forma de la mano para las letras.
 
-<CameraAccess />
+<WebcamDetector />
 
 <LessonCheckpoint leccion="basico-3" />
 
