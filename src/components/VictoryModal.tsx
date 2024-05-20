@@ -29,10 +29,10 @@ export default function VictoryModal({
 	const { reward, isAnimating } = useReward("rewardId", "confetti");
 
 	useEffect(() => {
-		if (!isAnimating) {
+		setInterval(() => {
 			reward();
-		}
-	}, [isAnimating, reward]);
+		}, 2000);
+	}, []);
 
 	return (
 		<>
@@ -40,12 +40,12 @@ export default function VictoryModal({
 				<ModalContent>
 					{(onClose) => (
 						<>
-							<ModalHeader className="flex flex-col gap-1">
+							<ModalHeader className="flex flex-col gap-1 text-center text-3xl">
 								¡Bien hecho!
 							</ModalHeader>
 							<ModalBody>
-								<span id="rewardId" className="mx-auto"></span>
 								<Carousel images={images} />
+								<span id="rewardId" className="mx-auto"></span>
 							</ModalBody>
 							<ModalFooter>
 								<Button

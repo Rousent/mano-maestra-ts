@@ -3,10 +3,11 @@ import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import { links } from "@/types/links";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
-import CameraAccess from "@/components/CameraAccess";
 import WebcamSpeller from "@/components/WebcamSpeller";
 import WebcamDetector from "@/components/WebcamDetector";
 import { IconCheck } from "@tabler/icons-react";
+import { gesture } from "@/components/LSMGestures";
+import TryNow from "@/components/TryNow";
 
 export default function Home() {
 	return (
@@ -252,8 +253,7 @@ export default function Home() {
 
 			<div className="mt-10">
 				<h2>¡Intentalo ahora mismo!</h2>
-				<WebcamDetector />
-				<WebcamSpeller palabra="oliver" />
+				<TryNow />
 			</div>
 		</div>
 	);
