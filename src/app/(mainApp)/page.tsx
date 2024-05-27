@@ -57,7 +57,7 @@ export default function Home() {
 			</div>
 
 			<div className="mt-10">
-				<h2>¿Porque Mano Maestra?</h2>
+				<h2>¿Por qué Mano Maestra?</h2>
 				<p className="text-center">¿Qué encontraras con nosotros?</p>
 				<div className="grid grid-cols-3 gap-4">
 					<Card>
@@ -140,7 +140,7 @@ export default function Home() {
 						</h3>
 						<ul className="list-inside list-decimal">
 							<li>Enciende tu cámara web.</li>
-							<li>Coloca tu mano frente a la camara.</li>
+							<li>Coloca tu mano frente a la cámara.</li>
 							<li>¡Práctica la forma de la seña!</li>
 						</ul>
 					</div>
