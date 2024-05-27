@@ -19,6 +19,8 @@ export default function Home() {
 						¿Quieres aprender lengua de señas mexicana? ¿Buscas la
 						mejor forma de aprender en línea de forma práctica y
 						cómoda? <strong>¡Somos tu mejor opción!</strong>
+						mejor forma de aprender en línea de forma práctica y
+						cómoda? <strong>¡Somos tu mejor opción!</strong>
 					</p>
 					<div className="flex flex-col gap-3 w-fit mx-auto mt-6">
 						<Button
@@ -68,11 +70,12 @@ export default function Home() {
 						</CardBody>
 						<CardFooter className="flex flex-col gap-1">
 							<span className="text-center text-lg font-bold">
-								Lecciones en línea
+								Lecciones en línea Lecciones en línea
 							</span>
 							<p>
 								Explora nuestras lecciones en sus 3 niveles:
-								básico, intermedio y avanzado.
+								básico, intermedio y avanzado. básico,
+								intermedio y avanzado.
 							</p>
 						</CardFooter>
 					</Card>
@@ -105,7 +108,7 @@ export default function Home() {
 						</CardBody>
 						<CardFooter className="flex flex-col gap-1">
 							<span className="text-center text-lg font-bold">
-								¡Practica!
+								¡Práctica!
 							</span>
 							<p>
 								No te conformes con la teoría. ¡Aplica el
@@ -159,12 +162,12 @@ export default function Home() {
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Acceso libre a las primeras lecciones del
-									nivel Básico.
+									nivel Básico. nivel Básico.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Prueba el sistema de reconocimiento de señas
-									básico.
+									básico. básico.
 								</li>
 							</ul>
 						</CardBody>
@@ -192,9 +195,11 @@ export default function Home() {
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Acceso total a todas las lecciones de los
 									niveles Básico, Intermedio y Avanzado.
+									niveles Básico, Intermedio y Avanzado.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
+									Práctica con el sistema de reconocimiento de
 									Práctica con el sistema de reconocimiento de
 									señas avanzado.
 								</li>
@@ -224,6 +229,7 @@ export default function Home() {
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
 									Acceso total a todas las lecciones de los
 									niveles Básico, Intermedio y Avanzado.
+									niveles Básico, Intermedio y Avanzado.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
@@ -232,6 +238,7 @@ export default function Home() {
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
+									Práctica con el sistema de reconocimiento de
 									Práctica con el sistema de reconocimiento de
 									señas avanzado.
 								</li>
@@ -244,7 +251,7 @@ export default function Home() {
 								as={Link}
 								href={links.signup}
 							>
-								Contactanos
+								Contáctanos
 							</Button>
 						</CardFooter>
 					</Card>

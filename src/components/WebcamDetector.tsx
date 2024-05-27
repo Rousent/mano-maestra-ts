@@ -26,7 +26,7 @@ export default function WebcamDetector() {
 				<button onClick={() => setOpen(true)} className="w-1/2 h-1/2">
 					<IconCamera className="w-full h-full stroke-whitecolor" />
 					<div className="text-3xl font-bold text-white">
-						Abrir la camara
+						Abrir la cámara
 					</div>
 				</button>
 			</div>
@@ -84,8 +84,7 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 						".png"
 				);
 			} else {
-				setPrediccion("Coloque la mano derecha frente a la camara.");
-				setImage(null);
+				setPrediccion("Coloque la mano derecha frente a la cámara.");
 			}
 			drawResults(ctx, hands);
 		}
