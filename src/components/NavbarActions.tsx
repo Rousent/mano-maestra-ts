@@ -92,6 +92,13 @@ export function OptionsButton({ usuario }: { usuario: Usuario | null }) {
 						>
 							Practica
 						</DropdownItem>
+						<DropdownItem
+							key={links.games.replace("/", "")}
+							startContent={<IconLink />}
+							href={links.games}
+						>
+							Juegos
+						</DropdownItem>
 					</DropdownSection>
 					<DropdownSection>
 						<DropdownItem
@@ -197,6 +204,13 @@ export function NavOptions() {
 					href={links.enterprise}
 				>
 					Para empresas
+				</DropdownItem>
+				<DropdownItem
+					key={links.games.replace("/", "")}
+					startContent={<IconLink />}
+					href={links.games}
+				>
+					Juegos
 				</DropdownItem>
 				<DropdownItem startContent={<IconLink />} href={links.signup}>
 					Crear cuenta

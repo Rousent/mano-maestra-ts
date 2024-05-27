@@ -83,6 +83,14 @@ export default async function Navbar({ session }: { session: Session | null }) {
 								Practica
 							</Link>
 						)}
+						<Link
+							href={links.games}
+							id="games"
+							isBlock
+							color="foreground"
+						>
+							Juegos
+						</Link>
 					</div>
 				</div>
 				<div className="right-0">

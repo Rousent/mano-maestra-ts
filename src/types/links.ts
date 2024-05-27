@@ -10,4 +10,5 @@ export const links = {
 	account: "/account",
 	premium: "/account/premium",
 	repo: "/repo",
+	games: "/games",
 };

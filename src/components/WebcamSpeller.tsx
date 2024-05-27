@@ -10,6 +10,8 @@ import { gesture } from "./LSMGestures";
 import VictoryModal from "./VictoryModal";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
+import Carousel from "./Carrusel";
+import { useReward } from "react-rewards";
 
 const fingerLookupIndices: any = {
 	thumb: [0, 1, 2, 3, 4],
@@ -26,7 +28,7 @@ export default function WebcamSpeller({ palabra }: { palabra: string }) {
 
 	if (!open) {
 		return (
-			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-[680px] h-[480px]">
+			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-[650px] h-[546px]">
 				<div className="text-3xl font-bold text-white">
 					Vamos a deletrar{" "}
 					<div className="text-yellow-200">{deletrear}</div>
@@ -55,7 +57,7 @@ export function WebcamSpellerInternal({
 	const [mensaje, setMensaje] = useState<string | null>(null);
 	// Fuck React
 	const stateRef = useRef(progreso);
-	const [images, setImages] = useState<String[]>([]);
+	const [images, setImages] = useState<string[]>([]);
 	const [image, setImage] = useState<any>(null);
 	const webcamRef = useRef<any>(null);
 	const canvasRef = useRef<any>(null);
@@ -118,6 +120,10 @@ export function WebcamSpellerInternal({
 							className="absolute left-0 bottom-0 z-20"
 						/>
 					);
+					if (stateRef.current === 0) {
+						setMensaje(null);
+						setRunning(true);
+					}
 				} else {
 					setImage(null);
 				}
@@ -127,11 +133,6 @@ export function WebcamSpellerInternal({
 					gesture[predictedClass] ==
 					deletrear.charAt(stateRef.current)
 				) {
-					if (stateRef.current === 0) {
-						setMensaje(null);
-						setRunning(true);
-					}
-
 					if (correctRef.current?.paused) {
 						correctRef.current.play();
 					} else if (correctRef.current) {
@@ -149,6 +150,22 @@ export function WebcamSpellerInternal({
 			drawResults(ctx, hands);
 		}
 	};
+
+	const win = useRef<HTMLAudioElement>(null);
+	const { reward, isAnimating } = useReward("winning", "confetti");
+
+	useEffect(() => {
+		if (win.current) {
+			win.current.play();
+			reward();
+		}
+	}, [win.current]);
+
+	useEffect(() => {
+		if (!isAnimating) {
+			reward();
+		}
+	}, [isAnimating]);
 
 	const onMount = async () => {
 		const model = handPoseDetection.SupportedModels.MediaPipeHands;
@@ -215,7 +232,7 @@ export function WebcamSpellerInternal({
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-fit h-fit">
+		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-[650px] h-[546px]">
 			<div className="relative">
 				<Button
 					className="absolute right-0 z-20"
@@ -236,11 +253,11 @@ export function WebcamSpellerInternal({
 
 				<Webcam
 					ref={webcamRef}
-					className="rounded-lg mx-auto text-center w-fit h-fit"
+					className="rounded-lg mx-auto text-center w-[640px] h-[480px]"
 				/>
 				<canvas
 					ref={canvasRef}
-					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-fit h-fit"
+					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-[640px] h-[480px]"
 				/>
 			</div>
 			<div className="py-3 text-whitecolor font-medium text-2xl">
@@ -272,10 +289,19 @@ export function WebcamSpellerInternal({
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
 				setOpen={setOpen}
-				images={images}
-				palabra={deletrear}
-				time={formatTime(time)}
-			/>
+			>
+				<span className="text-xl text-center">
+					¡Deletraste <strong>{deletrear}</strong> en{" "}
+					{formatTime(time)} segundos!
+				</span>
+				<Carousel images={images} />
+				<span id="winning" className="mx-auto"></span>
+				<audio
+					ref={win}
+					src="/sound/applause.mp3"
+					itemType="audio/mpeg"
+				></audio>
+			</VictoryModal>
 		</div>
 	);
 }
