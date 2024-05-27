@@ -3,16 +3,25 @@ import { useState, useRef } from "react";
 import WebcamDetector from "./WebcamDetector";
 import WebcamSpeller from "./WebcamSpeller";
 import { Input } from "@nextui-org/input";
-import { gesture } from "./LSMGestures";
 
 export default function TryNow() {
 	const [input, setInput] = useState("");
+	const gesture = "abcdefghilmnoprstuvwyABCDEFGHILMNOPRSTUVWY";
+
+	const filter = (e: any) => {
+		const value = e.target.value;
+		const filteredValue = value
+			.split("")
+			.filter((char: any) => gesture.includes(char))
+			.join("");
+		setInput(filteredValue);
+	};
 
 	return (
 		<div className="flex flex-row gap-10">
 			<div className="max-w-xl">
 				<h3>
-					¿Alguna vez te has preguntado como se deletrea tu nombre en
+					¿Alguna vez te has preguntado cómo se deletrea tu nombre en
 					Lengua de Señas Mexicana?
 				</h3>
 				<p className="text-sm">
@@ -24,9 +33,19 @@ export default function TryNow() {
 					deletrearlo!
 				</p>
 
+				<p className="text-sm">
+					<i>
+						Nota: El sistema no puede reconocer letras con
+						movimiento, por lo que las siguientes letras no se
+						encuentran disponibles:{" "}
+						<strong>J, K, Ñ, Q, X, Z</strong>
+					</i>
+				</p>
+
 				<Input
 					className="border-2 rounded-xl border-slate-600"
-					onChange={(e) => setInput(e.target.value)}
+					onChange={filter}
+					value={input}
 				></Input>
 			</div>
 

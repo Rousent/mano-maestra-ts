@@ -40,14 +40,14 @@ export default function Lessons({
 					isStriped
 				/>
 				<p>
-					En este nivel aprenderás los fundamentos del lenguaje de
+					En este nivel aprenderás los fundamentos de la lengua de
 					señas, incluyendo el alfabeto, los números básicos y otras
-					señas comúnes.
+					señas comunes.
 				</p>
 				<p>
 					<b>
 						Este nivel es perfecto para personas que no tienen
-						experiencia previa con el lenguaje de señas.
+						experiencia previa con la lengua de señas.
 					</b>
 				</p>
 				<ul>
@@ -76,16 +76,16 @@ export default function Lessons({
 					isStriped
 				/>
 				<p>
-					En este nivel ampliarás tus conocimientos de lenguaje de
+					En este nivel ampliarás tus conocimientos de la lengua de
 					señas y podrás mantener conversaciones más complejas sobre
-					una variedad de temas. Aprenderás a usar la gramática del
-					lenguaje de señas y a expresarte de manera más fluida y
+					una variedad de temas. Aprenderás a usar la gramática de la
+					lengua de señas y a expresarte de manera más fluida y
 					natural.
 				</p>
 				<p>
 					<b>
 						Este nivel es recomendado para personas que tienen un
-						conocimiento básico del lenguaje de señas.
+						conocimiento básico en lengua de señas.
 					</b>
 				</p>
 				<ul>
@@ -114,8 +114,8 @@ export default function Lessons({
 					isStriped
 				/>
 				<p>
-					En este nivel perfeccionarás tus habilidades en el lenguaje
-					de señas y podrás participar en conversaciones con personas
+					En este nivel perfeccionarás tus habilidades en la lengua de
+					señas y podrás participar en conversaciones con personas
 					sordas de manera fluida y segura. Aprenderás sobre la
 					cultura sorda y cómo interactuar con personas sordas en
 					diferentes contextos.
@@ -123,7 +123,7 @@ export default function Lessons({
 				<p>
 					<b>
 						Este nivel es recomendado para personas que tienen un
-						dominio intermedio del lenguaje de señas.
+						dominio intermedio en la lengua de señas.
 					</b>
 				</p>
 				<ul>
@@ -152,9 +152,9 @@ export default function Lessons({
 					isStriped
 				/>
 				<p>
-					En este nivel aprenderás el lenguaje de señas específico que
+					En este nivel aprenderás la lengua de señas específica que
 					se utiliza en el entorno empresarial. Podrás atender a
-					clientes sordos, dar presentaciones en lenguaje de señas y
+					clientes sordos, dar presentaciones en lengua de señas y
 					participar en reuniones con colegas sordos.
 				</p>
 				<p>
@@ -188,16 +188,15 @@ export default function Lessons({
 function LessonLink({ key, leccion }: { key: string; leccion: Leccion }) {
 	return (
 		<li key={key}>
+			<hr />
 			<Link
 				href={"/content/" + leccion.id_leccion}
 				isBlock
 				color="foreground"
-				className="flex flex-row justify-between items-center px-3"
+				className="grid-flow-col justify-between items-center px-3 w-full"
 			>
-				<div className="flex gap-2">
-					<IconChevronRight />
-					{leccion.titulo}
-				</div>
+				<IconChevronRight />
+				<div className="w-full">{leccion.titulo}</div>
 				{leccion.completado ? (
 					<IconCircleCheckFilled className="w-8 h-auto" />
 				) : (

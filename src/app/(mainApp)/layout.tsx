@@ -27,6 +27,13 @@ export default async function MainAppLayout({
 					{children}
 				</div>
 			</div>
+			<footer className="mt-6 w-full">
+				<div className="bg-blackcolor flex flex-col justify-center items-center">
+					<p className="text-whitecolor text-center">
+						© 2024 Mano Maestra. Todos los derechos reservados.
+					</p>
+				</div>
+			</footer>
 		</>
 	);
 }

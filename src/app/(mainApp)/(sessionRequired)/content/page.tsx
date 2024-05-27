@@ -43,7 +43,8 @@ export default async function Indice() {
 				<h2>Lecciones</h2>
 				<span className="text-xl">
 					Explora las lecciones, practica con el sistema de
-					reconocimiento, ¡Y aprende sobre el lenguaje de señas!
+					reconocimiento, ¡Y aprende sobre la lengua de señas
+					mexicana!
 				</span>
 			</div>
 			<span>Mi progreso: {data.nivel}</span>

@@ -9,6 +9,7 @@ import * as tf from "@tensorflow/tfjs";
 import { gesture } from "./LSMGestures";
 import VictoryModal from "./VictoryModal";
 import { useDisclosure } from "@nextui-org/react";
+import Image from "next/image";
 
 const fingerLookupIndices: any = {
 	thumb: [0, 1, 2, 3, 4],
@@ -20,6 +21,7 @@ const fingerLookupIndices: any = {
 
 export default function WebcamSpeller({ palabra }: { palabra: string }) {
 	const [open, setOpen] = useState(false);
+
 	const deletrear = palabra.toUpperCase();
 
 	if (!open) {
@@ -50,11 +52,15 @@ export function WebcamSpellerInternal({
 	setOpen: any;
 }) {
 	const [progreso, setProgreso] = useState(0);
+	const [mensaje, setMensaje] = useState<string | null>(null);
 	// Fuck React
 	const stateRef = useRef(progreso);
 	const [images, setImages] = useState<String[]>([]);
+	const [image, setImage] = useState<any>(null);
 	const webcamRef = useRef<any>(null);
 	const canvasRef = useRef<any>(null);
+	const bgmRef = useRef<HTMLAudioElement | null>(null);
+	const correctRef = useRef<HTMLAudioElement | null>(null);
 	const hiddenCanvasRef = useRef<any>(null);
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -98,14 +104,44 @@ export function WebcamSpellerInternal({
 					Math.max(...predictionArray[0])
 				);
 
+				if (hands.length > 0 && hands[0]["handedness"] === "Left") {
+					setImage(
+						<Image
+							src={
+								"/img/Abecedario/man_" +
+								gesture[predictedClass].toLowerCase() +
+								".png"
+							}
+							alt={gesture[predictedClass]}
+							width={100}
+							height={100}
+							className="absolute left-0 bottom-0 z-20"
+						/>
+					);
+				} else {
+					setImage(null);
+				}
+
 				// Comprobar que hace la seña correctamente
 				if (
 					gesture[predictedClass] ==
 					deletrear.charAt(stateRef.current)
 				) {
+					if (stateRef.current === 0) {
+						setMensaje(null);
+						setRunning(true);
+					}
+
+					if (correctRef.current?.paused) {
+						correctRef.current.play();
+					} else if (correctRef.current) {
+						correctRef.current.currentTime = 0;
+					}
 					setProgreso(stateRef.current + 1);
 					capture();
 				} else if (stateRef.current === deletrear.length) {
+					setRunning(false);
+					bgmRef.current?.pause();
 					onOpen();
 				}
 			} else {
@@ -128,6 +164,12 @@ export function WebcamSpellerInternal({
 
 		const core = await tf.loadLayersModel("/model/model.json");
 
+		if (core) setMensaje("Coloque la mano derecha frente a la camara.");
+
+		if (bgmRef.current) {
+			bgmRef.current.play();
+		}
+
 		setInterval(() => {
 			detect(detector, core);
 		}, 100);
@@ -141,6 +183,37 @@ export function WebcamSpellerInternal({
 		stateRef.current = progreso;
 	}, [progreso]);
 
+	// Contador
+
+	const [time, setTime] = useState(0);
+	const [running, setRunning] = useState(false);
+	const intervalRef = useRef<any>(null);
+
+	useEffect(() => {
+		if (running) {
+			const startTime = Date.now() - time;
+			intervalRef.current = setInterval(() => {
+				setTime(Date.now() - startTime);
+			}, 10);
+		} else {
+			clearInterval(intervalRef.current);
+		}
+
+		return () => clearInterval(intervalRef.current);
+	}, [running, time]);
+
+	const resetCounter = () => {
+		setRunning(false);
+		setTime(0);
+	};
+
+	const formatTime = (time: any) => {
+		const milliseconds = ("0" + (Math.floor(time / 10) % 100)).slice(-2);
+		const seconds = ("0" + (Math.floor(time / 1000) % 60)).slice(-2);
+		const minutes = ("0" + (Math.floor(time / 60000) % 60)).slice(-2);
+		return `${minutes}:${seconds}.${milliseconds}`;
+	};
+
 	return (
 		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-fit h-fit">
 			<div className="relative">
@@ -151,6 +224,16 @@ export function WebcamSpellerInternal({
 				>
 					Cerrar
 				</Button>
+				<span className="absolute top-0 left-0 bg-whitecolor p-2 rounded">
+					{formatTime(time)}
+				</span>
+				<div className="absolute mt-5 mx-auto w-full flex justify-center">
+					<span className="text-whitecolor bg-blackcolor p-3 w-fit rounded-3xl">
+						{mensaje}
+					</span>
+				</div>
+				{image}
+
 				<Webcam
 					ref={webcamRef}
 					className="rounded-lg mx-auto text-center w-fit h-fit"
@@ -171,12 +254,27 @@ export function WebcamSpellerInternal({
 					{deletrear.slice(progreso + 1)}
 				</div>
 			</div>
+			<audio
+				id="bgmAudio"
+				ref={bgmRef}
+				src="/sound/bgm.mp3"
+				itemType="audio/mpeg"
+				loop
+			></audio>
+			<audio
+				id="correctAudio"
+				ref={correctRef}
+				src="/sound/correct.mp3"
+				itemType="audio/mpeg"
+			></audio>
 			<canvas ref={hiddenCanvasRef} style={{ display: "none" }}></canvas>
 			<VictoryModal
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
 				setOpen={setOpen}
 				images={images}
+				palabra={deletrear}
+				time={formatTime(time)}
 			/>
 		</div>
 	);

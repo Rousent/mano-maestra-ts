@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
 	Modal,
 	ModalContent,
@@ -15,28 +15,40 @@ export default function VictoryModal({
 	isOpen,
 	onOpenChange,
 	setOpen,
+	palabra,
+	time,
 }: {
 	images: any[];
 	isOpen: boolean;
 	onOpenChange: () => void;
 	setOpen: any;
+	palabra: string;
+	time: string;
 }) {
 	const handleClose = (closeModal: () => void) => {
 		setOpen(false);
 		closeModal();
 	};
 
+	const win = useRef<HTMLAudioElement>(null);
 	const { reward, isAnimating } = useReward("rewardId", "confetti");
 
 	useEffect(() => {
-		setInterval(() => {
+		if (win.current) {
+			win.current.play();
 			reward();
-		}, 2000);
-	}, []);
+		}
+	}, [win.current]);
+
+	useEffect(() => {
+		if (!isAnimating) {
+			reward();
+		}
+	}, [isAnimating]);
 
 	return (
 		<>
-			<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+			<Modal isOpen={isOpen} onOpenChange={onOpenChange} hideCloseButton>
 				<ModalContent>
 					{(onClose) => (
 						<>
@@ -44,8 +56,17 @@ export default function VictoryModal({
 								¡Bien hecho!
 							</ModalHeader>
 							<ModalBody>
+								<span className="text-xl text-center">
+									¡Deletraste <strong>{palabra}</strong> en{" "}
+									{time} segundos!
+								</span>
 								<Carousel images={images} />
 								<span id="rewardId" className="mx-auto"></span>
+								<audio
+									ref={win}
+									src="/sound/applause.mp3"
+									itemType="audio/mpeg"
+								></audio>
 							</ModalBody>
 							<ModalFooter>
 								<Button

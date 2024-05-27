@@ -7,6 +7,7 @@ import { Button } from "@nextui-org/button";
 import { IconCamera } from "@tabler/icons-react";
 import * as tf from "@tensorflow/tfjs";
 import { gesture } from "./LSMGestures";
+import Image from "next/image";
 
 const fingerLookupIndices: any = {
 	thumb: [0, 1, 2, 3, 4],
@@ -37,6 +38,7 @@ export default function WebcamDetector() {
 
 export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 	const [prediccion, setPrediccion] = useState("Cargando Red Neuronal...");
+	const [image, setImage] = useState<any>(null);
 	const webcamRef = useRef<any>(null);
 	const canvasRef = useRef<any>(null);
 
@@ -76,8 +78,14 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 				);
 
 				setPrediccion(gesture[predictedClass]);
+				setImage(
+					"/img/Abecedario/man_" +
+						gesture[predictedClass].toLowerCase() +
+						".png"
+				);
 			} else {
 				setPrediccion("Coloque la mano derecha frente a la camara.");
+				setImage(null);
 			}
 			drawResults(ctx, hands);
 		}
@@ -116,6 +124,15 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 				>
 					Cerrar
 				</Button>
+				{image && (
+					<Image
+						src={image}
+						alt={prediccion}
+						width={100}
+						height={100}
+						className="absolute left-0 bottom-0 z-20"
+					/>
+				)}
 				<Webcam
 					ref={webcamRef}
 					className="rounded-lg mx-auto text-center w-fit h-fit"
