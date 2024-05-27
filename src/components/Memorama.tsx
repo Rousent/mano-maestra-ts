@@ -1,6 +1,6 @@
 "use client";
 import { Button, useDisclosure } from "@nextui-org/react";
-import { IconKeyboard } from "@tabler/icons-react";
+import { IconKeyboard, IconQuestionMark } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { gesture } from "./LSMGestures";
 import Image from "next/image";
@@ -243,7 +243,7 @@ function InternalMemorama({ setOpen }: any) {
 										}}
 										className="w-[100px] h-[120px] object-cover mx-1 rounded-lg border-3"
 									>
-										?
+										<IconQuestionMark className="w-full h-full" />
 									</Button>
 								)
 							)}
