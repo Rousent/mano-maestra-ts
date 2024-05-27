@@ -17,8 +17,8 @@ export default function Home() {
 					<h1>¡Bienvenid@ a Mano Maestra!</h1>
 					<p>
 						¿Quieres aprender lengua de señas mexicana? ¿Buscas la
-						mejor forma de aprender en linea de forma practica y
-						comoda? <strong>¡Somos tu mejor opción!</strong>
+						mejor forma de aprender en línea de forma práctica y
+						cómoda? <strong>¡Somos tu mejor opción!</strong>
 					</p>
 					<div className="flex flex-col gap-3 w-fit mx-auto mt-6">
 						<Button
@@ -55,8 +55,8 @@ export default function Home() {
 			</div>
 
 			<div className="mt-10">
-				<h2>¿Porque Mano Maestra?</h2>
-				<p className="text-center">¿Que encontraras con nosotros?</p>
+				<h2>¿Por qué Mano Maestra?</h2>
+				<p className="text-center">¿Qué encontrarás con nosotros?</p>
 				<div className="grid grid-cols-3 gap-4">
 					<Card>
 						<CardBody>
@@ -68,11 +68,11 @@ export default function Home() {
 						</CardBody>
 						<CardFooter className="flex flex-col gap-1">
 							<span className="text-center text-lg font-bold">
-								Lecciones en linea
+								Lecciones en línea
 							</span>
 							<p>
 								Explora nuestras lecciones en sus 3 niveles:
-								basico, intermedio y avanzado.
+								básico, intermedio y avanzado.
 							</p>
 						</CardFooter>
 					</Card>
@@ -105,11 +105,11 @@ export default function Home() {
 						</CardBody>
 						<CardFooter className="flex flex-col gap-1">
 							<span className="text-center text-lg font-bold">
-								¡Practica!
+								¡Práctica!
 							</span>
 							<p>
 								No te conformes con la teoria. ¡Aplica el
-								estudio practico con nuestro{" "}
+								estudio práctico con nuestro{" "}
 								<strong>
 									sistema de reconocimiento de señas
 								</strong>
@@ -136,8 +136,8 @@ export default function Home() {
 							Prueba nuestro sistema de reconocimiento de señas
 						</h3>
 						<ul className="list-inside list-decimal">
-							<li>Enciende tu camara web.</li>
-							<li>Pon la mano frente a la camara.</li>
+							<li>Enciende tu cámara web.</li>
+							<li>Pon la mano frente a la cámara.</li>
 							<li>¡Practica la forma de la seña!</li>
 						</ul>
 					</div>
@@ -159,12 +159,12 @@ export default function Home() {
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Acceso libre a las primeras lecciones del
-									nivel Basico.
+									nivel Básico.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Prueba el sistema de reconocimiento de señas
-									basico.
+									básico.
 								</li>
 							</ul>
 						</CardBody>
@@ -191,11 +191,11 @@ export default function Home() {
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
 									Acceso total a todas las lecciones de los
-									niveles Basico, Intermedio y Avanzado.
+									niveles Básico, Intermedio y Avanzado.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-naranja" />
-									Practica con el sistema de reconocimiento de
+									Práctica con el sistema de reconocimiento de
 									señas avanzado.
 								</li>
 							</ul>
@@ -223,7 +223,7 @@ export default function Home() {
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
 									Acceso total a todas las lecciones de los
-									niveles Basico, Intermedio y Avanzado.
+									niveles Básico, Intermedio y Avanzado.
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
@@ -232,7 +232,7 @@ export default function Home() {
 								</li>
 								<li className="flex gap-6 items-center text-base">
 									<IconCheck className="shrink-0 w-10 h-10 stroke-accent" />
-									Practica con el sistema de reconocimiento de
+									Práctica con el sistema de reconocimiento de
 									señas avanzado.
 								</li>
 							</ul>
@@ -244,7 +244,7 @@ export default function Home() {
 								as={Link}
 								href={links.signup}
 							>
-								Contactanos
+								Contáctanos
 							</Button>
 						</CardFooter>
 					</Card>

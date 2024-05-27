@@ -19,7 +19,7 @@ export default function TryNow() {
 					<i>(Porque yo si...)</i>
 				</p>
 				<p>
-					Si el modelo de reconocimiento libre se te queda corto,
+					Si sientes que el modelo de reconocimiento libre no es suficiente para ti,
 					¿porque no pruebas a escribir tu nombre? ¡Veamos si puedes
 					deletrearlo!
 				</p>
