@@ -72,7 +72,7 @@ export default async function Navbar({ session }: { session: Session | null }) {
 								Lecciones
 							</Link>
 						)}
-						{session && (
+						{/*session && (
 							<Link
 								href={links.practice}
 								id="practice"
@@ -82,7 +82,7 @@ export default async function Navbar({ session }: { session: Session | null }) {
 							>
 								Practica
 							</Link>
-						)}
+						)*/}
 						<Link
 							href={links.games}
 							id="games"

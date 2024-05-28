@@ -85,6 +85,7 @@ export function OptionsButton({ usuario }: { usuario: Usuario | null }) {
 						>
 							Lecciones
 						</DropdownItem>
+						{/*
 						<DropdownItem
 							key={links.practice.replace("/", "")}
 							startContent={<IconLink />}
@@ -92,6 +93,7 @@ export function OptionsButton({ usuario }: { usuario: Usuario | null }) {
 						>
 							Practica
 						</DropdownItem>
+						*/}
 						<DropdownItem
 							key={links.games.replace("/", "")}
 							startContent={<IconLink />}

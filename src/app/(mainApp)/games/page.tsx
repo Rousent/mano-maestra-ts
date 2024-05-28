@@ -60,7 +60,7 @@ export default function Games() {
 					</i>
 				</p>
 
-				<div className="flex flex-row w-1/2 mx-auto mb-3 justify-center items-center gap-5">
+				<div className="flex flex-col md:flex-row w-1/2 mx-auto mb-3 justify-center items-center gap-5">
 					<Input
 						className="border-2 rounded-xl border-slate-600"
 						onChange={filter}

@@ -182,7 +182,8 @@ function InternalMemorama({ setOpen }: any) {
 					<div className="flex flex-col w-full gap-5 justify-center items-center">
 						<div className="grid grid-cols-6 gap-5">
 							{hands.map((hand, index) =>
-								input.includes(hand + index) ? (
+								input.includes(hand + index) ||
+								done.includes(hand + index) ? (
 									<Button
 										color={
 											(input &&
@@ -219,13 +220,7 @@ function InternalMemorama({ setOpen }: any) {
 									</Button>
 								) : (
 									<Button
-										color={
-											(input &&
-												input[0] === hand + index) ||
-											(input && input[1] === hand + index)
-												? "primary"
-												: "default"
-										}
+										color="success"
 										key={hand + index}
 										isDisabled={done.includes(hand + index)}
 										onClick={() => {
@@ -243,7 +238,7 @@ function InternalMemorama({ setOpen }: any) {
 										}}
 										className="w-[100px] h-[120px] object-cover mx-1 rounded-lg border-3"
 									>
-										<IconQuestionMark className="w-full h-full" />
+										<IconQuestionMark className="w-full h-full stroke-white" />
 									</Button>
 								)
 							)}

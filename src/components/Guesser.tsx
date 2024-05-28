@@ -52,6 +52,15 @@ function InternalGuesser({ setOpen }: any) {
 		setPalabra(wordi.toUpperCase());
 	};
 
+	useEffect(() => {
+		if (palabra && palabra.length > 6) {
+			const word =
+				unfiltered[Math.floor(Math.random() * unfiltered.length)];
+			const wordi = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+			setPalabra(wordi.toUpperCase());
+		}
+	}, [palabra]);
+
 	const endGame = () => {
 		bgmRef.current?.pause();
 		onOpen();
@@ -89,7 +98,22 @@ function InternalGuesser({ setOpen }: any) {
 			.split("")
 			.filter((char: any) => gesture.includes(char))
 			.join("");
-		setInput(filteredValue.toUpperCase());
+		const newInput = filteredValue.toUpperCase();
+		setInput(newInput);
+
+		if (
+			newInput &&
+			palabra &&
+			newInput.length > input.length &&
+			newInput.charAt(newInput.length - 1) ===
+				palabra.charAt(newInput.length - 1)
+		) {
+			if (correctRef.current?.paused) {
+				correctRef.current.play();
+			} else if (correctRef.current) {
+				correctRef.current.currentTime = 0;
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -158,6 +182,7 @@ function InternalGuesser({ setOpen }: any) {
 					<div className="">
 						<div className="flex flex-row justify-center mb-5">
 							{palabra &&
+								palabra.length <= 6 &&
 								palabra
 									.split("")
 									.map((letter, index) => (
