@@ -18,7 +18,7 @@ export default function TryNow() {
 	};
 
 	return (
-		<div className="flex flex-row gap-10">
+		<div className="flex lg:flex-row flex-col sm:items-center gap-10">
 			<div className="max-w-xl">
 				<h3>
 					¿Alguna vez te has preguntado cómo se deletrea tu nombre en
@@ -28,9 +28,9 @@ export default function TryNow() {
 					<i>(Porque yo si...)</i>
 				</p>
 				<p>
-					Si sientes que el modelo de reconocimiento libre no es suficiente para ti,
-					¿porque no pruebas a escribir tu nombre? ¡Veamos si puedes
-					deletrearlo!
+					Si sientes que el modelo de reconocimiento libre no es
+					suficiente para ti, ¿porque no pruebas a escribir tu nombre?
+					¡Veamos si puedes deletrearlo!
 				</p>
 
 				<p className="text-sm">

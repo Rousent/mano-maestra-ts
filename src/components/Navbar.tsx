@@ -36,7 +36,7 @@ export default async function Navbar({ session }: { session: Session | null }) {
 						color="foreground"
 						className="w-40 h-20 bg-logo bg-contain bg-no-repeat bg-center"
 					/>
-					<div className="hidden md:flex md:gap-10">
+					<div className="hidden lg:flex md:gap-10">
 						<Link
 							href={links.about}
 							id="about"

@@ -1,8 +1,7 @@
-
 import { Button } from "@nextui-org/react";
 export default function Empresas() {
 	return (
-		<div className="flex flex-row px-40 py-10 justify-between gap-10">
+		<div className="flex flex-col lg:flex-row px-40 py-10 justify-between gap-10">
 			<div className="flex flex-col w-full gap-5">
 				<h2 className="text-center font-bold text-3xl">
 					Ofrecemos promociones y planes personalizados a empresas.
@@ -67,5 +66,4 @@ export default function Empresas() {
 			</form>
 		</div>
 	);
-	
 }

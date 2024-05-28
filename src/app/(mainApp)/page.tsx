@@ -12,13 +12,11 @@ import TryNow from "@/components/TryNow";
 export default function Home() {
 	return (
 		<div className="flex flex-col gap-2 w-full h-full m-2">
-			<div className="grid grid-cols-2 gap-12">
-				<div className="self-center">
+			<div className="grid md:grid-cols-2 grid-rows-1 gap-12">
+				<div className="self-center w-full">
 					<h1>¡Bienvenid@ a Mano Maestra!</h1>
 					<p>
 						¿Quieres aprender lengua de señas mexicana? ¿Buscas la
-						mejor forma de aprender en línea de forma práctica y
-						cómoda? <strong>¡Somos tu mejor opción!</strong>
 						mejor forma de aprender en línea de forma práctica y
 						cómoda? <strong>¡Somos tu mejor opción!</strong>
 					</p>
@@ -46,7 +44,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div>
+				<div className="hidden md:flex items-center">
 					<Image
 						isBlurred
 						isZoomed
@@ -59,7 +57,7 @@ export default function Home() {
 			<div className="mt-10">
 				<h2>¿Por qué Mano Maestra?</h2>
 				<p className="text-center">¿Qué encontraras con nosotros?</p>
-				<div className="grid grid-cols-3 gap-4">
+				<div className="grid md:grid-cols-3 grid-cols-1 gap-4">
 					<Card>
 						<CardBody>
 							<Image
@@ -126,7 +124,7 @@ export default function Home() {
 			<div className="mt-10">
 				<h2>¡Aprende de forma práctica!</h2>
 
-				<div className="grid grid-cols-2 gap-10">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
 					<Image
 						src="img/heart_sign.jpg"
 						isBlurred
@@ -149,8 +147,8 @@ export default function Home() {
 
 			<div className="mt-10">
 				<h2>Nuestros planes de precios</h2>
-				<div className="grid grid-cols-3 gap-4">
-					<Card className="p-7">
+				<div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+					<Card className="p-7 max-w-md mx-auto">
 						<CardBody>
 							<span className="text-center text-3xl font-bold">
 								Gratuito
@@ -182,7 +180,7 @@ export default function Home() {
 							</Button>
 						</CardFooter>
 					</Card>
-					<Card className="p-7">
+					<Card className="p-7 max-w-md mx-auto">
 						<CardBody>
 							<span className="text-center text-3xl font-bold">
 								Premium
@@ -216,7 +214,7 @@ export default function Home() {
 							</Button>
 						</CardFooter>
 					</Card>
-					<Card className="p-7">
+					<Card className="p-7 max-w-md mx-auto">
 						<CardBody>
 							<span className="text-center text-3xl font-bold">
 								Empresarial

@@ -54,7 +54,7 @@ export function OptionsButton({ usuario }: { usuario: Usuario | null }) {
 							<b>{usuario?.email}</b>
 						</DropdownItem>
 					</DropdownSection>
-					<DropdownSection className="md:hidden" showDivider>
+					<DropdownSection className="lg:hidden" showDivider>
 						<DropdownItem
 							key={links.about.replace("/", "")}
 							startContent={<IconLink />}

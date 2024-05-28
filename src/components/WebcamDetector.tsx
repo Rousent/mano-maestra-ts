@@ -22,7 +22,7 @@ export default function WebcamDetector() {
 
 	if (!open) {
 		return (
-			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-[650px] h-[546px]">
+			<div className="flex flex-col justify-center items-center bg-blackcolor rounded-lg mx-auto self-center text-center w-full sm:w-[650px] sm:h-[546px]">
 				<button onClick={() => setOpen(true)} className="w-1/2 h-1/2">
 					<IconCamera className="w-full h-full stroke-whitecolor" />
 					<div className="text-3xl font-bold text-white">
@@ -85,6 +85,7 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 				);
 			} else {
 				setPrediccion("Coloque la mano derecha frente a la cámara.");
+				setImage(null);
 			}
 			drawResults(ctx, hands);
 		}
@@ -114,7 +115,7 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 	}, []);
 
 	return (
-		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-[650px] h-[546px]">
+		<div className="flex flex-col justify-center items-center rounded-lg bg-blackcolor p-[5px] mx-auto w-fit md:w-[650px] md:h-[546px]">
 			<div className="relative">
 				<Button
 					className="absolute right-0 z-20"
@@ -134,14 +135,14 @@ export function WebcamDetectorInternal({ setOpen }: { setOpen: any }) {
 				)}
 				<Webcam
 					ref={webcamRef}
-					className="rounded-lg mx-auto text-center w-[640px] h-[480px]"
+					className="rounded-lg mx-auto text-center w-full h-full"
 				/>
 				<canvas
 					ref={canvasRef}
-					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-[640px] h-[480px]"
+					className="absolute z-10 mx-auto rounded-lg top-0 left-0 w-full h-full"
 				/>
 			</div>
-			<div className="py-3 text-whitecolor font-medium text-2xl">
+			<div className="py-3 text-whitecolor font-medium text-2xl text-center">
 				{prediccion}
 			</div>
 		</div>

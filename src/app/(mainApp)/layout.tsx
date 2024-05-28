@@ -23,7 +23,7 @@ export default async function MainAppLayout({
 				<Navbar session={session} />
 			</header>
 			<div className="w-full flex justify-center">
-				<div className="flex grow max-w-7xl justify-between mx-8">
+				<div className="flex grow max-w-7xl w-full justify-between mx-8">
 					{children}
 				</div>
 			</div>
