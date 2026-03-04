@@ -20,7 +20,7 @@
     "@supabase/supabase-js": "^2.33.1",
     "@tabler/icons-react": "^2.32.0",
     "@tensorflow-models/hand-pose-detection": "^2.0.1",
-    "@tensorflow-models/handpose": "^0.1.0",
+    "@tensorflow-models/handpose": "^0.0.5",
     "@tensorflow/tfjs": "^4.17.0",
     "@types/mdx": "^2.0.9",
     "@types/node": "20.5.6",
@@ -28,8 +28,8 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "encoding": "^0.1.13",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
+    "eslint": "^4.0.0",
+    "eslint-config-next": "^16.1.6",
     "fingerpose": "^0.1.0",
     "framer-motion": "^10.18.0",
     "next": "^14.0.0",
@@ -41,7 +41,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "supabase": "^1.93.0",
+    "supabase": "^2.76.12",
     "tailwindcss": "^3.3.3"
   }
 }
