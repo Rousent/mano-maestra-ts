@@ -1,24 +1,25 @@
 "use client";
 
 import { Link } from "@nextui-org/link";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+//import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Input, Button } from "@nextui-org/react";
 import PasswordField from "@/components/PasswordField";
 import { FormEvent, useState } from "react";
 import { IconMail } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { setSession } from "@/app/cookiesHandler";
 
 export default function Login() {
-	const supabase = createClientComponentClient();
+	//const supabase = createClientComponentClient();
 	const router = useRouter();
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState<string | null>();
+	//const [error, setError] = useState<string | null>();
 
 	const onSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setError(null);
+		/* setError(null);
 		const { error } = await supabase.auth.signInWithPassword({
 			email,
 			password,
@@ -27,7 +28,10 @@ export default function Login() {
 			setError(error.message);
 		} else {
 			router.refresh();
-		}
+		} */
+		
+		setSession();
+		router.refresh();
 	};
 
 	return (
@@ -41,8 +45,8 @@ export default function Login() {
 			<div className="flex flex-col gap-2">
 				<Input
 					type="email"
-					label="Correo electrónico"
-					isRequired
+					label="Correo Electrónico"
+					//isRequired
 					placeholder="Ej. name@mail.com"
 					startContent={<IconMail />}
 					labelPlacement="inside"
@@ -56,9 +60,9 @@ export default function Login() {
 					Olvidé mi contraseña
 				</Link>
 			</div>
-			{error ? (
+			{/* {error ? (
 				<span className="text-red-800 text-center">{error}</span>
-			) : null}
+			) : null} */}
 
 			<Button
 				type="submit"

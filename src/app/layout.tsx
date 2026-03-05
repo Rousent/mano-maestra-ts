@@ -4,10 +4,11 @@ import { Providers } from "./providers";
 import { cookies } from "next/headers";
 
 import type { Metadata } from "next";
+import { clearLecciones } from "./cookiesHandler";
 
 export const metadata: Metadata = {
 	title: "Mano Maestra",
-	description: "Proyecto Mano Maestra Infomatrix 2024",
+	description: "Proyecto Mano Maestra Anfeca 2024",
 };
 
 /**
@@ -22,6 +23,8 @@ const poppins = Poppins({
 	subsets: ["latin"],
 	display: "swap",
 });
+
+if (!cookies().has("session")) clearLecciones();
 
 export default function RootLayout({
 	children,

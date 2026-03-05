@@ -1,8 +1,9 @@
 
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+//import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { IconHome } from "@tabler/icons-react"
 import { cookies } from "next/headers"
+//import { cookies } from "next/headers"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 
@@ -19,9 +20,9 @@ export default async function FormsLayout({
 }) {
 
     // Redirigir a Home si ya hay sesión
-    const supabase = createServerComponentClient({ cookies })
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session) redirect("/")
+    /* const supabase = createServerComponentClient({ cookies })
+    const { data: { session } } = await supabase.auth.getSession() */
+    if (cookies().has("session")) redirect("/")
 
     return (
         <div className="w-full h-full bg-sign-language bg-cover bg-center">

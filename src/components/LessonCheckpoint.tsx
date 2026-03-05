@@ -2,9 +2,10 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState, useRef, useEffect } from "react";
 import { IconCheck } from "@tabler/icons-react";
+import { setLeccionCompletada } from "@/app/cookiesHandler";
 
 export default function LessonCheckpoint({ leccion }: { leccion: string }) {
-	const supabase = createClientComponentClient();
+	//const supabase = createClientComponentClient();
 
 	const [visible, setVisible] = useState(false);
 	const ref = useRef(null);
@@ -29,7 +30,7 @@ export default function LessonCheckpoint({ leccion }: { leccion: string }) {
 	}, [visible]);
 
 	const onActivate = async () => {
-		const { data } = await supabase.auth.getUser();
+		/* const { data } = await supabase.auth.getUser();
 
 		const lecciones = await supabase
 			.from("lecciones_completadas")
@@ -42,7 +43,8 @@ export default function LessonCheckpoint({ leccion }: { leccion: string }) {
 				id_usuario: data.user?.id,
 				id_leccion: leccion,
 			});
-		}
+		} */
+		setLeccionCompletada(leccion)
 	};
 
 	return (

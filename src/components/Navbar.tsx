@@ -16,14 +16,27 @@ import { links } from "@/types/links";
  * Options son el enlace a account y el boton de logout. Disponibles solo con sesión.
  */
 
-export default async function Navbar({ session }: { session: Session | null }) {
+const defaultUser: Usuario = {
+	id: 1,
+	nombres: "John",
+	apellido_paterno: "Doe",
+	apellido_materno: "Dum",
+	email: "name@mail.com",
+	idRol: 2,
+	rol: "Estudiante",
+	nivel: "Basico",
+	valor_nivel: 1,
+}
+
+export default async function Navbar({ session }: { session: boolean }) {
 	let usuario: Usuario | null = null;
-	const supabase = createServerComponentClient({ cookies });
+	/* const supabase = createServerComponentClient({ cookies });
 
 	if (session) {
 		const { data } = await supabase.rpc("get_full_user");
 		usuario = data;
-	}
+	} */
+	if (session) usuario = defaultUser;
 
 	return (
 		<nav className="bg-fondo w-full flex justify-center mb-4 shadow-md">

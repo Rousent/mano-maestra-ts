@@ -1,9 +1,11 @@
+import { getLeccion } from "@/app/cookiesHandler";
 import Lessons, { LevelUp } from "@/components/LessonsList";
+import { Leccion } from "@/types/local";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 export default async function Indice() {
-	const supabase = createServerComponentClient({ cookies });
+	/* const supabase = createServerComponentClient({ cookies });
 	const { data } = await supabase.rpc("get_full_user");
 
 	let niveles: any = await supabase
@@ -35,7 +37,20 @@ export default async function Indice() {
 				? (100 / niveles[i].lecciones.length) *
 				  niveles[i].lecciones.filter((l: any) => l.completado).length
 				: 0;
-	}
+	} */
+
+	const basico0 = await getLeccion("basico-0")
+	const basico1 = await getLeccion("basico-1")
+	const basico2 = await getLeccion("basico-2")
+	const basico3 = await getLeccion("basico-3")
+	const basico4 = await getLeccion("basico-4")
+	const basico5 = await getLeccion("basico-5")
+	const basico6 = await getLeccion("basico-6")
+	const basico7 = await getLeccion("basico-7")
+
+	const lecciones = [
+		basico0, basico1, basico2, basico3, basico4, basico5, basico6, basico7
+	]
 
 	return (
 		<div className="w-full flex flex-col gap-3 items-center">
@@ -47,8 +62,8 @@ export default async function Indice() {
 					mexicana!
 				</span>
 			</div>
-			<span>Mi progreso: {data.nivel}</span>
-			<Lessons niveles={niveles} nivelActual={data.valor_nivel} />
+			<span>Mi progreso: Nivel Básico</span>
+			<Lessons lecciones={lecciones} nivelActual={1} />
 		</div>
 	);
 }

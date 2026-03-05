@@ -20,7 +20,7 @@ export default function PasswordField({
 			label={label}
 			onChange={onChange}
 			labelPlacement="inside"
-			isRequired
+			//isRequired
 			placeholder="********"
 			startContent={<IconKey />}
 			endContent={

@@ -1,5 +1,6 @@
 "use client";
 
+import { clearLecciones, deleteSession } from "@/app/cookiesHandler";
 import { links } from "@/types/links";
 import { Usuario } from "@/types/local";
 import { Button, Divider, Tooltip } from "@nextui-org/react";
@@ -141,11 +142,13 @@ function LogoutModal({
 	isOpen: boolean;
 	onOpenChange: () => void;
 }) {
-	const supabase = createClientComponentClient();
+	//const supabase = createClientComponentClient();
 	const router = useRouter();
 
 	const handleLogout = async () => {
-		await supabase.auth.signOut();
+		//await supabase.auth.signOut();
+		deleteSession();
+		clearLecciones();
 		router.refresh();
 	};
 

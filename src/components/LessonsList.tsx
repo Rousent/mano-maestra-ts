@@ -13,10 +13,10 @@ import { Link } from "@nextui-org/link";
 import { useRouter } from "next/navigation";
 
 export default function Lessons({
-	niveles,
+	lecciones,
 	nivelActual,
 }: {
-	niveles: any;
+	lecciones: any[];
 	nivelActual: number;
 }) {
 	let disabledLevels: any = {
@@ -25,17 +25,24 @@ export default function Lessons({
 		3: [],
 	};
 
+	let completadas = 0
+	lecciones.forEach(leccion => {
+		if (leccion.value == "true") completadas++;
+	})
+
+	const percent = (100 / lecciones.length) * completadas
+
 	return (
 		<Accordion
 			className="md:w-[768px] w-full"
 			defaultExpandedKeys={[nivelActual.toString()]}
 			disabledKeys={disabledLevels[nivelActual] ?? []}
 		>
-			<AccordionItem key="1" title="Nivel Basico">
+			<AccordionItem key="1" title="Nivel Básico">
 				<Progress
 					label="Progreso"
 					className="mb-3"
-					value={niveles[0].porcentaje}
+					value={percent}
 					showValueLabel
 					isStriped
 				/>
@@ -51,11 +58,11 @@ export default function Lessons({
 					</b>
 				</p>
 				<ul>
-					{niveles[0].lecciones.length > 0 ? (
-						niveles[0].lecciones.map((leccion: any) => {
+					{lecciones.length > 0 ? (
+						lecciones.map((leccion: any) => {
 							return (
 								<LessonLink
-									key={leccion.id_leccion}
+									key={leccion.name}
 									leccion={leccion}
 								/>
 							);
@@ -71,7 +78,7 @@ export default function Lessons({
 				<Progress
 					label="Progreso"
 					className="mb-3"
-					value={niveles[1].porcentaje}
+					value={0}
 					showValueLabel
 					isStriped
 				/>
@@ -89,27 +96,16 @@ export default function Lessons({
 					</b>
 				</p>
 				<ul>
-					{niveles[1].lecciones.length > 0 ? (
-						niveles[1].lecciones.map((leccion: any) => {
-							return (
-								<LessonLink
-									key={leccion.id_leccion}
-									leccion={leccion}
-								/>
-							);
-						})
-					) : (
 						<li key="none2" className="text-center">
 							Ups, no hay nada que ver aqui...
 						</li>
-					)}
 				</ul>
 			</AccordionItem>
 			<AccordionItem key="3" title="Nivel Avanzado">
 				<Progress
 					label="Progreso"
 					className="mb-3"
-					value={niveles[2].porcentaje}
+					value={0}
 					showValueLabel
 					isStriped
 				/>
@@ -127,27 +123,16 @@ export default function Lessons({
 					</b>
 				</p>
 				<ul>
-					{niveles[2].lecciones.length > 0 ? (
-						niveles[2].lecciones.map((leccion: any) => {
-							return (
-								<LessonLink
-									key={leccion.id_leccion}
-									leccion={leccion}
-								/>
-							);
-						})
-					) : (
 						<li key="none3" className="text-center">
 							Ups, no hay nada que ver aqui...
 						</li>
-					)}
 				</ul>
 			</AccordionItem>
 			<AccordionItem key="4" title="LSM Orientado a Empresas">
 				<Progress
 					label="Progreso"
 					className="mb-3"
-					value={niveles[3].porcentaje}
+					value={0}
 					showValueLabel
 					isStriped
 				/>
@@ -165,39 +150,28 @@ export default function Lessons({
 					</b>
 				</p>
 				<ul>
-					{niveles[3].lecciones.length > 0 ? (
-						niveles[3].lecciones.map((leccion: any) => {
-							return (
-								<LessonLink
-									key={leccion.id_leccion}
-									leccion={leccion}
-								/>
-							);
-						})
-					) : (
 						<li key="none4" className="text-center">
 							Ups, no hay nada que ver aqui...
 						</li>
-					)}
 				</ul>
 			</AccordionItem>
 		</Accordion>
 	);
 }
 
-function LessonLink({ key, leccion }: { key: string; leccion: Leccion }) {
+function LessonLink({ key, leccion }: { key: string; leccion: any }) {
 	return (
 		<li key={key}>
 			<hr />
 			<Link
-				href={"/content/" + leccion.id_leccion}
+				href={"/content/" + leccion.name}
 				isBlock
 				color="foreground"
 				className="grid-flow-col justify-between items-center px-3 w-full"
 			>
 				<IconChevronRight />
-				<div className="w-full">{leccion.titulo}</div>
-				{leccion.completado ? (
+				<div className="w-full">Lección {leccion.name.charAt(leccion.name.length-1)}</div>
+				{leccion.value == "true" ? (
 					<IconCircleCheckFilled className="w-8 h-auto" />
 				) : (
 					<IconPlayerPlayFilled className="w-8 h-auto" />

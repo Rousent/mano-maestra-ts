@@ -1,7 +1,7 @@
-import { UUID } from "crypto";
+//import { UUID } from "crypto";
 
 export type Usuario = {
-	id: UUID;
+	id: number;
 	nombres: string;
 	apellido_paterno: string;
 	apellido_materno: string;

@@ -4,8 +4,8 @@ import { Usuario } from "@/types/local";
 import { Tabs, Tab, Divider, Button, Input } from "@nextui-org/react";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { Chip } from "@nextui-org/react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
+//import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+//import { useRouter } from "next/navigation";
 import PasswordField from "@/components/PasswordField";
 
 import { FormEvent, useState } from "react";
@@ -55,8 +55,8 @@ function Datos({ usuario }: { usuario: Usuario }) {
 }
 
 function ModificarDatos({ usuario }: { usuario: Usuario }) {
-	const supabase = createClientComponentClient();
-	const router = useRouter();
+	/* const supabase = createClientComponentClient();
+	const router = useRouter(); */
 
 	const [nombres, setNombres] = useState(usuario.nombres);
 	const [apellidoPaterno, setApellidoPaterno] = useState(
@@ -69,7 +69,7 @@ function ModificarDatos({ usuario }: { usuario: Usuario }) {
 
 	const onSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setMessage(null);
+		/* setMessage(null);
 		let cambios = {};
 		if (nombres !== usuario.nombres) {
 			Object.assign(cambios, { nombres });
@@ -93,7 +93,7 @@ function ModificarDatos({ usuario }: { usuario: Usuario }) {
 			}
 		} else {
 			setMessage(<span>No hay cambios que realizar</span>);
-		}
+		} */
 	};
 
 	return (
@@ -137,8 +137,8 @@ function ModificarDatos({ usuario }: { usuario: Usuario }) {
 }
 
 function ModificarContraseña() {
-	const supabase = createClientComponentClient();
-	const router = useRouter();
+	/* const supabase = createClientComponentClient();
+	const router = useRouter(); */
 
 	const [actual, setActual] = useState("");
 	const [nueva, setNueva] = useState("");
@@ -147,7 +147,7 @@ function ModificarContraseña() {
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setMessage(null);
+		/* setMessage(null);
 		if (nueva == confirmar) {
 			const { error } = await supabase.rpc("change_user_password", {
 				current_plain_password: actual,
@@ -161,7 +161,7 @@ function ModificarContraseña() {
 			}
 		} else {
 			setMessage(<span>Las contraseñas no concuerdan</span>);
-		}
+		} */
 	};
 
 	return (

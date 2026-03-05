@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { clearLecciones } from "../cookiesHandler";
 /**
  * Layout de las paginas principales.
  * Incluye el header con la barra de navegación
@@ -12,10 +13,11 @@ export default async function MainAppLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const supabase = createServerComponentClient({ cookies });
+	/* const supabase = createServerComponentClient({ cookies });
 	const {
 		data: { session },
-	} = await supabase.auth.getSession();
+	} = await supabase.auth.getSession(); */
+	const session = cookies().has("session")
 
 	return (
 		<>

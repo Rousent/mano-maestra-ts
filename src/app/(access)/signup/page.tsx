@@ -1,16 +1,16 @@
-"use client";
-
+"use client"
 import { Link } from "@nextui-org/link";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+//import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Input, Button } from "@nextui-org/react";
 import PasswordField from "@/components/PasswordField";
 import { FormEvent, useState } from "react";
 import { IconMail } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@nextui-org/spinner";
+import { setSession } from "@/app/cookiesHandler";
 
 export default function Login() {
-	const supabase = createClientComponentClient();
+	//const supabase = createClientComponentClient();
 	const router = useRouter();
 
 	const [boton, setBoton] = useState(
@@ -24,7 +24,7 @@ export default function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmar, setConfirmar] = useState("");
-	const [error, setError] = useState<string | null>();
+	//const [error, setError] = useState<string | null>();
 
 	const signUpData = {
 		email: email,
@@ -41,7 +41,7 @@ export default function Login() {
 
 	const onSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setError(null);
+		/* setError(null);
 		if (nombres && paterno && materno && email && password && confirmar) {
 			if (password == confirmar) {
 				const { error } = await supabase.auth.signUp(signUpData);
@@ -62,7 +62,10 @@ export default function Login() {
 			}
 		} else {
 			setError("Debes rellenar todos los campos");
-		}
+		} */
+		setBoton(<Spinner/>);
+		setSession();
+		router.refresh();
 	};
 
 	return (
@@ -78,25 +81,25 @@ export default function Login() {
 					type="text"
 					label="Nombres"
 					placeholder="Ej. Juan"
-					isRequired
+					//isRequired
 					onChange={(e) => setNombres(e.target.value)}
 				></Input>
 				<Input
 					type="text"
 					label="Apellido Paterno"
-					isRequired
+					//isRequired
 					onChange={(e) => setPaterno(e.target.value)}
 				></Input>
 				<Input
 					type="text"
 					label="Apellido Materno"
-					isRequired
+					//isRequired
 					onChange={(e) => setMaterno(e.target.value)}
 				></Input>
 				<Input
 					type="email"
-					label="Correo electrónico"
-					isRequired
+					label="Correo Electrónico"
+					//isRequired
 					placeholder="Ej. name@mail.com"
 					startContent={<IconMail />}
 					labelPlacement="inside"
@@ -111,9 +114,9 @@ export default function Login() {
 					label="Confirmar contraseña"
 				></PasswordField>
 			</div>
-			{error ? (
+			{/* {error ? (
 				<span className="text-red-800 text-center">{error}</span>
-			) : null}
+			) : null} */}
 			{boton}
 			<div className="flex flex-row gap-2 justify-center items-center">
 				<div>¿Ya tienes una cuenta?</div>
